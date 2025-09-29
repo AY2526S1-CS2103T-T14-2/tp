@@ -10,7 +10,7 @@
         "larry-gaw": "Larry Gaw",
         "jane-doe": "Jane Doe",
         "johnny-doe": "Johnny Doe",
-        "jean-doe": "Jean Doe",
+        "martin-tan": "Martin Tan",
         "james-doe": "James Doe"
       },
       "headingKeywords": {}
@@ -138,6 +138,14 @@
     {
       "src": "team/larrygaw.md",
       "title": "John Doe's Project Portfolio Page",
+      "headings": {
+        "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/martin.md",
+      "title": "Martin's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
