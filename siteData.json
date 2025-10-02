@@ -11,7 +11,7 @@
         "tan-kuan-feng": "Tan Kuan Feng",
         "aaron-goh-chong-jun": "Aaron Goh Chong Jun",
         "martin-tan": "Martin Tan",
-        "james-doe": "James Doe"
+        "hou-zhenming": "Hou Zhenming"
       },
       "headingKeywords": {}
     },
@@ -145,6 +145,14 @@
     },
     {
       "src": "team/goodguykf.md",
+      "title": "John Doe's Project Portfolio Page",
+      "headings": {
+        "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/houzhenming.md",
       "title": "John Doe's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
