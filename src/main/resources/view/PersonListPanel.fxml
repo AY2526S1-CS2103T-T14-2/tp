@@ -3,6 +3,19 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableCell?>
+<?import javafx.scene.control.TableColumn?>
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+  <TableView fx:id="personTableView" VBox.vgrow="ALWAYS">
+    <columns>
+        <TableColumn fx:id="id" text="#" minWidth="20" maxWidth="20"/>
+        <TableColumn fx:id="name" text="Name" minWidth="120" maxWidth="200"/>
+        <TableColumn fx:id="phone" text="Phone" minWidth="90" maxWidth="90"/>
+        <TableColumn fx:id="email" text="Email" minWidth="150" />
+        <TableColumn fx:id="address" text="Address" minWidth="250" />
+        <TableColumn fx:id="companyName" text="Company" minWidth="130" maxWidth="200"/>
+        <TableColumn fx:id="status" text="Status" minWidth="90" maxWidth="90"/>
+    </columns>
+  </TableView>
 </VBox>

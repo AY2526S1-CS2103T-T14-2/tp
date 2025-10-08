@@ -2,10 +2,13 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -18,32 +21,51 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private TableView<Person> personTableView;
+    @FXML
+    private TableColumn<Person, String> id;
+    @FXML
+    private TableColumn<Person, String> name;
+    @FXML
+    private TableColumn<Person, String> phone;
+    @FXML
+    private TableColumn<Person, String> email;
+    @FXML
+    private TableColumn<Person, String> address;
+    @FXML
+    private TableColumn<Person, String> companyName;
+    @FXML
+    private TableColumn<Person, String> status;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personTableView.setItems(personList);
+        personTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        setColumns();
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Sets the columns for each {@code Person} within the {@code PersonListPanel}.
+     * Each row contains all the fields of {@code Person} for a specific individual.
      */
-    class PersonListViewCell extends ListCell<Person> {
-        @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
-
-            if (empty || person == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
-            }
-        }
+    public void setColumns() {
+        id.setCellValueFactory(cell -> new SimpleStringProperty(
+                String.valueOf(cell.getTableView().getItems().indexOf(cell.getValue()) + 1)));
+        name.setCellValueFactory(cell -> new SimpleStringProperty(
+                cell.getValue().getName().fullName));
+        phone.setCellValueFactory(cell -> new SimpleStringProperty(
+                cell.getValue().getPhone().value));
+        email.setCellValueFactory(cell -> new SimpleStringProperty(
+                cell.getValue().getEmail().value));
+        address.setCellValueFactory(cell -> new SimpleStringProperty(
+                cell.getValue().getAddress().value));
+        companyName.setCellValueFactory(cell -> new SimpleStringProperty(
+                "<COMPANY NAME>"));
+        status.setCellValueFactory(cell -> new SimpleStringProperty(
+                "<STATUS>"));
     }
 
 }
