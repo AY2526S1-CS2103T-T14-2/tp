@@ -14,11 +14,12 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path ClientHubFilePath = Paths.get("data" , "ClientHub.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
+
     public UserPrefs() {}
 
     /**
@@ -48,12 +49,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+        return ClientHubFilePath;
     }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+        this.ClientHubFilePath = addressBookFilePath;
     }
 
     @Override
@@ -69,19 +70,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath);
+                && ClientHubFilePath.equals(otherUserPrefs.ClientHubFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, ClientHubFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + ClientHubFilePath);
         return sb.toString();
     }
 
