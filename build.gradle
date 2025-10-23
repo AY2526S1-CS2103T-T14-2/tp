@@ -70,4 +70,8 @@ shadowJar {
     archiveFileName = 'ClientHub.jar'
 }
 
+run {
+    enableAssertions = true;
+}
+
 defaultTasks 'clean', 'test'
