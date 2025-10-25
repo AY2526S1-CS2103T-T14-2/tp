@@ -24,9 +24,9 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
-        ClientHub addressBookFromFile = dataFromFile.toModelType();
-        ClientHub typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        ClientHub clientHubFromFile = dataFromFile.toModelType();
+        ClientHub typicalPersonsClientHub = TypicalPersons.getTypicalAddressBook();
+        assertEquals(clientHubFromFile, typicalPersonsClientHub);
     }
 
     @Test

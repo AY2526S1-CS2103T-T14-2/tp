@@ -92,12 +92,12 @@ public class JsonAddressBookStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code clientHub} at the specified {@code filePath}.
      */
-    private void saveClientHub(ReadOnlyClientHub addressBook, String filePath) {
+    private void saveClientHub(ReadOnlyClientHub clientHub, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveClientHub(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveClientHub(clientHub, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyClientHub;
 import seedu.address.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ClientHub that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
@@ -32,7 +32,7 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyClientHub} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
@@ -41,20 +41,20 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this ClientHub into the model's {@code ClientHub} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public ClientHub toModelType() throws IllegalValueException {
-        ClientHub addressBook = new ClientHub();
+        ClientHub clientHub = new ClientHub();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (clientHub.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            clientHub.addPerson(person);
         }
-        return addressBook;
+        return clientHub;
     }
 
 }

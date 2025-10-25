@@ -24,23 +24,23 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
-    private final ClientHub addressBook = new ClientHub();
+    private final ClientHub clientHub = new ClientHub();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), clientHub.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> clientHub.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
         ClientHub newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        clientHub.resetData(newData);
+        assertEquals(newData, clientHub);
     }
 
     @Test
@@ -51,46 +51,46 @@ public class AddressBookTest {
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         ClientHubStub newData = new ClientHubStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> clientHub.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> clientHub.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(clientHub.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        clientHub.addPerson(ALICE);
+        assertTrue(clientHub.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        clientHub.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withProducts(VALID_PRODUCT_PAPER)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(clientHub.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> clientHub.getPersonList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = ClientHub.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
-        assertEquals(expected, addressBook.toString());
+        String expected = ClientHub.class.getCanonicalName() + "{persons=" + clientHub.getPersonList() + "}";
+        assertEquals(expected, clientHub.toString());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface
+     * A stub ReadOnlyClientHub whose persons list can violate interface
      * constraints.
      */
     private static class ClientHubStub implements ReadOnlyClientHub {
