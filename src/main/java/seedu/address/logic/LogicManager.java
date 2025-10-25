@@ -51,7 +51,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveClientHub(model.getAddressBook());
+            storage.saveClientHub(model.getClientHub());
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -63,7 +63,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyClientHub getAddressBook() {
-        return model.getAddressBook();
+        return model.getClientHub();
     }
 
     @Override

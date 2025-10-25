@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyClientHub;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access ClientHub data stored as a json file on the hard disk.
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
@@ -69,12 +69,12 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveClientHub(ReadOnlyClientHub addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveClientHub(ReadOnlyClientHub clientHub, Path filePath) throws IOException {
+        requireNonNull(clientHub);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(clientHub), filePath);
     }
 
 }

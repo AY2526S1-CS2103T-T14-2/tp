@@ -132,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClientHub(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -166,7 +166,7 @@ public class LogicManagerTest {
         // when saving
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
             @Override
-            public void saveClientHub(ReadOnlyClientHub addressBook, Path filePath)
+            public void saveClientHub(ReadOnlyClientHub clientHub, Path filePath)
                     throws IOException {
                 throw e;
             }

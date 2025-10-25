@@ -70,9 +70,9 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveClientHub(ReadOnlyClientHub addressBook, Path filePath) throws IOException {
+    public void saveClientHub(ReadOnlyClientHub clientHub, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveClientHub(addressBook, filePath);
+        addressBookStorage.saveClientHub(clientHub, filePath);
     }
 
 }

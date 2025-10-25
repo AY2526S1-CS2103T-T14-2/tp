@@ -45,12 +45,12 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code clientHub}.
      */
-    void setAddressBook(ReadOnlyClientHub addressBook);
+    void setClientHub(ReadOnlyClientHub clientHub);
 
-    /** Returns the AddressBook */
-    ReadOnlyClientHub getAddressBook();
+    /** Returns the ClientHub */
+    ReadOnlyClientHub getClientHub();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

@@ -5,11 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ClientHub;
 import seedu.address.model.ReadOnlyClientHub;
 
 /**
- * Represents a storage for {@link ClientHub}.
+ * Represents a storage for {@link seedu.address.model.ClientHub}.
  */
 public interface AddressBookStorage {
 
@@ -19,7 +18,7 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyClientHub}.
+     * Returns ClientHub data as a {@link ReadOnlyClientHub}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
@@ -41,6 +40,6 @@ public interface AddressBookStorage {
     /**
      * @see #saveClientHub(ReadOnlyClientHub)
      */
-    void saveClientHub(ReadOnlyClientHub addressBook, Path filePath) throws IOException;
+    void saveClientHub(ReadOnlyClientHub clientHub, Path filePath) throws IOException;
 
 }

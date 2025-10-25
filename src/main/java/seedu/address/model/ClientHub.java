@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the clientHub level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class ClientHub implements ReadOnlyClientHub {
@@ -31,7 +31,7 @@ public class ClientHub implements ReadOnlyClientHub {
     public ClientHub() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a ClientHub using the Persons in the {@code toBeCopied}
      */
     public ClientHub(ReadOnlyClientHub toBeCopied) {
         this();
@@ -49,7 +49,7 @@ public class ClientHub implements ReadOnlyClientHub {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ClientHub} with {@code newData}.
      */
     public void resetData(ReadOnlyClientHub newData) {
         requireNonNull(newData);
@@ -119,8 +119,8 @@ public class ClientHub implements ReadOnlyClientHub {
             return false;
         }
 
-        ClientHub otherAddressBook = (ClientHub) other;
-        return persons.equals(otherAddressBook.persons);
+        ClientHub otherClientHub = (ClientHub) other;
+        return persons.equals(otherClientHub.persons);
     }
 
     @Override

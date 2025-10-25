@@ -69,7 +69,7 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
         }
 
-        List<Person> allPersons = new ArrayList<>(model.getAddressBook().getPersonList());
+        List<Person> allPersons = new ArrayList<>(model.getClientHub().getPersonList());
         List<Person> toDelete = allPersons.stream()
                 .filter(p -> p.getStatus().toString().equalsIgnoreCase(targetStatus))
                 .toList();

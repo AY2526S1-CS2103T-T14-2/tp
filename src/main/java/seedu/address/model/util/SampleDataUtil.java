@@ -16,7 +16,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.product.Product;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ClientHub} with sample data.
  */
 public class SampleDataUtil {
 
