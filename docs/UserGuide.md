@@ -22,6 +22,7 @@ designed specifically for sales representatives based in Singapore who handle B2
 - [Quick Start](#quick-start)
   - [Installation](#installation)
 - [Features](#features)
+  - [Important points](#important-points)
   - [View help `help`](#view-help-help)
   - [Clear all entries `clear`](#clear-all-entries-clear)
   - [Add a client `add`](#add-a-client-add)
@@ -121,54 +122,49 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 
 ## Features
 
-<box type="info" seamless>
-
-**Before diving into the features and commands, take note about the different command formats used:**<br>
-
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
-  e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.
-  </div>
-<br>
-
-- Items in square brackets are optional.<br>
-<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
-  e.g <code>n/NAME [s/STATUS]</code> can be used as <code>n/John Doe s/successful</code> or as <code>n/John Doe</code>.
-  </div>
-<br>
-
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
-  e.g. <code>[pdt/PRODUCT]…​</code> can be excluded (i.e. 0 times), <code>pdt/Fish</code>, <code>pdt/Chicken pdt/Fish</code> etc.
-  </div>
-<br>
-
-- Parameters can be in any order.<br>
-<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
-  e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.
-  </div>
-<br>
-
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `find`, `list`, `undo`, `redo`, `exit` and `clear`) will be ignored.<br>
-  
-<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
-  e.g. if the command specifies <code>help 123</code>, it will be interpreted as <code>help</code>.
-  </div>
-<br>
-
-- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-  </box>
+Before diving into the features, do take note of some [important points](#important-points).
 
 <br>
-<br>
+
+---
+
+#### Important points
+**Notes about the command format:**<br>
+
+- Words in `UPPER_CASE` are the parameters that you need to provide.<br>
+  e.g. in `add n/NAME`, `NAME` can be replaced by `John Doe`.
+
+- Items in square brackets are **optional**.<br>
+  e.g `n/NAME [s/STATUS]` indicates that `status` is *optional*.
+
+- Items with *ellipsis* `…`​ after them can be used any number of times (*including* 0).<br>
+  e.g. `[pdt/PRODUCT]…​` can be empty, `pdt/Fish` **or** `pdt/Chicken pdt/Fish`.
+
+- Parameters can be provided in any order.<br>
+  e.g. Both `n/NAME p/PHONE_NUMBER` and `p/PHONE_NUMBER n/NAME` are acceptable.
+
+<box type="important" seamless>
+
+- Extra parameters for commands that do not require parameters (`help`, `clear`, `list`, `undo`, `redo` and `exit` ) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+</box>
+
+<box type="warning" seamless>
+
+If you are using the PDF version, be careful when copying commands. Spaces may be left out when copied over to the application.
+
+</box>
+
+---
 
 ### View help: `help`
 
 Don't worry if you cannot remember all the commands, you can view all the commands by typing `help`.
 
-![help message](images/helpMessageV2.png)
-
 **Format**: `help`
+
+![help message](images/helpMessageV2.png)
 
 <br>
 <br>
@@ -188,24 +184,21 @@ Adds a client to ClientHub.
 
 **Format**: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS [s/STATUS] [pdt/PRODUCTS]…​`
 
-Details:
-- ***Duplicate*** entries are **not allowed**
-  - Only clients with the same `name` **AND** same `phone_number` are considered duplicates
-  - Same name, but different phone number is **not** a duplicate
-  - Same phone number, but different name is **not** a duplicate <br> <br>
+<box type="info" seamless>
+
 - `name` only accepts alphabetic characters and spaces.
-- `phone number` is limited to 8 digits, starting with 3, 6, 8 or 9, as this application is Singapore based.
+- `phone number` must have 8 digits, starting with 3, 6, 8 or 9
 - `company` only accepts alphanumeric characters and spaces.
-- `email` only accepts the format `local-part`@`domain`
-  - `local-part` only accepts alphanumeric characters and these special characters `( ) + - _ .`. It cannot start or end with special characters.
-  - `domain` must contain a period`.`, and have a domain label at least 2 characters long (eg. `com`)
-- `address` accepts any values
-- `status` accepts only `uncontacted`, `inprogress`, `unsuccessful` or `successful`
-- If the optional `[s/STATUS]` field is not specified, it will be defaulted to `uncontacted`
+
+</box>
 
 <box type="important" seamless>
 
-A client can have any number of products (including 0).
+- A client can have any number of products (including 0).
+- ***Duplicate*** entries are **not allowed**
+    - Only entries with same `name` **AND** same `phone number` are considered duplicates
+- `status` accepts only `uncontacted`, `inprogress`, `unsuccessful` or `successful`
+    - If not specified, status will default to `uncontacted`
 </box>
 
 
@@ -242,13 +235,14 @@ Edits an existing client in ClientHub.
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCTS]…​`
 
-Details:
-- Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer equal or lesser than the number of contacts you have in the list, N,** 1, 2, 3, …​, N.
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
+<box type="info" seamless>
+
+- Edits the client at the specified `INDEX` of the currently displayed client list
 - You can remove all of a specified client’s products by typing `edit INDEX pdt/`.
 - `edit` will not be successful if the requested changes would result in a **duplicate** entry in the data file.
   - For more information on ***duplicate entries***, refer [here](#add-a-client-add)
+
+</box>
 
 <box type="warning" seamless>
 
@@ -282,19 +276,27 @@ This clears all current products tagged to the 3rd client in the list, replacing
 
 ### Find a client: `find`
 
-Finds clients who have any of the matching details (case-insensitive).
+Finds clients who have any of the matching details.
 
 **Format**: `find [n/] [c/] [s/] [pdt/]`
 
-Details:
+<box type="info" seamless>
+
+- OR-matching
+  - `find n/james john` finds all clients with name `james` **OR** `john`
+- AND-matching
+  - `find n/james s/successful` finds all clients with name `james` **AND** status `successful`.
+
+</box>
+
+<box type="important" seamless>
+
 - ***At least*** one of the optional fields must be provided.
 - Case-insensitive. e.g `hans` will match `Hans`
 - **Substring** matching applies to `n/`, `c/`, and `pdt/`
-- **Exact** matching only applies to `s/`. Substrings will **not** match for `s/` <br> <br>
-- Multiple keywords separated by spaces are **OR-matched**
-  - `find n/james john` finds all clients with name `james` **OR** `john`
-- Different prefixes are **AND-matched**
-  - `find n/james s/successful` finds all clients with name `james` **AND** status `successful`.
+- **Exact** matching only applies to `s/`. Substrings will **not** match for `s/`
+
+</box>
 
 Examples:
 <div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
@@ -329,19 +331,16 @@ This matches <code>Bernice Yu</code> because <code>Bernice Yu</code> is working 
 
 ### Delete a client: `delete`
 
-Deletes the specified client or every client with the specified status from ClientHub.
+Deletes a certain client or every client with a specified status from ClientHub.
 
 **Format 1**: `delete INDEX`
 
-- Deletes the client at the specified `INDEX`.
-- The index refers to the index number shown in the displayed client list.
-- The index **must be a positive integer less than the number of contacts in the list** 1, 2, 3, …​, N
+- Deletes the client at the specified `INDEX` of the currently displayed client list
 
 **Format 2**: `delete STATUS`
 
-- Deletes every client currently holding the specified `STATUS`.
-- The status refers to the onboarding progress of the client.
-- The status **must be either uncontacted, inprogress, unsuccessful or successful**
+- Deletes every client with the specified `STATUS`.
+- `STATUS` **must be either** `uncontacted`, `inprogress`, `unsuccessful` or `successful`
 
 Examples:
 <div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
@@ -374,16 +373,19 @@ Keying in <code>find n/John</code> followed by <code>delete unsuccessful</code> 
 
 **Format**: `undo`
 
-Reverses the changes of the most recent **successful** command that modifies the data file. <br> <br>
+Reverses the changes of the most recent **successful** command that modifies the data file.
 
-Details:
+<box type="info" seamless>
+
 - `undo` only applies to commands that ***change stored data***, such as:
   - `add`
   - `edit`
   - `delete`
-  - `clear` <br> <br>
+  - `clear`
 - Commands that ***do not change stored data*** are skipped.
 - `undo` will not do anything if you have not ***successfully*** executed any commands that modify stored data. <br>
+
+</box>
 
 Example:
 <div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
@@ -410,11 +412,7 @@ The <code>find</code> command is skipped because it does not modify stored data.
 
 **Format**: `redo`
 
-Restores the changes that were undone by the most recent `undo` command. <br> <br>
-
-Details:
-- `redo` will only be successful if executed immediately after an `undo` command <br>
-- If not `undo` has been performed, `redo` will not do anything. <br>
+Restores the changes that were undone by the most recent `undo` command.
 
 Example:
 <div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
@@ -430,6 +428,12 @@ The first <code>undo</code> reverses the <code>delete</code> command, and the <c
 <br>
 
 <box type="info" seamless>
+
+`redo` will only be successful if executed immediately after an `undo` command. It will not do anything otherwise.
+
+</box>
+
+<box type="tip" seamless>
 
 You can use `redo` multple times to reapply several undone commands.
 </box>
@@ -470,13 +474,16 @@ Furthermore, certain edits can cause ClientHub to behave in unexpected ways (e.g
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ClientHub home folder.
+**A**: Install the application in the other computer and overwrite the empty data file it creates with your existing `addressbook.json`.
 
 **Q**: I entered a command but nothing happened. What should I do?<br>
 **A**: Check if your command follows the exact format shown in the [Features](#features) section. ClientHub ignores extra spaces but requires all parameters to be correctly prefixed (e.g., n/, p/, e/, etc.).
 
-**Q**: I accidentally deleted a Client, can I undo that mistake?<br>
-**A**: Yes you can. Refer to Undo command in the [Features](#features) section.
+**Q**: I accidentally deleted a client, can I undo that mistake?<br>
+**A**: Yes you can. Refer to the [undo command](#undo-previous-command-undo) for more information.
+
+**Q**: What do I do if my client's name is too long?<br>
+**A**: Choose a preferred name to save the client as instead of their full name. This can be done for company, email, address, and products as well!
 
 <br>
 <br>

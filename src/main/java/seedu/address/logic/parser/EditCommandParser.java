@@ -39,12 +39,27 @@ public class EditCommandParser implements Parser<EditCommand> {
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS, PREFIX_PRODUCT);
 
         Index index;
+        String preamble = argMultimap.getPreamble().trim();
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+
+        if (preamble.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE));
         }
+
+        int indexValue;
+        try {
+            indexValue = Integer.parseInt(preamble);
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), e);
+        }
+
+        if (indexValue <= 0) {
+            throw new ParseException("Index is invalid. Index must be a positive number within the list.");
+        }
+
+        index = Index.fromOneBased(indexValue);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_COMPANY, PREFIX_EMAIL,
                 PREFIX_STATUS, PREFIX_ADDRESS);
