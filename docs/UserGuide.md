@@ -79,7 +79,10 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 5. Use `java -jar clienthub.jar` command to run the application.
 
 > A GUI similar to the one below should be seen
-> ![GUI](images/clienthubInterface.png)
+> <figure>
+>  <img src="images/clienthubInterface.png" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <figcaption style="text-align: center; font-style: italic;">ClientHub user interface labelled</figcaption>
+> </figure>
 
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -127,7 +130,10 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessageV2.png)
+> <figure>
+>  <img src="images/helpMessageV2.png" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <figcaption style="text-align: center; font-style: italic;">Help message displayed after entering 'help'</figcaption>
+> </figure>
 
 Format: `help`
 
@@ -196,7 +202,11 @@ Format: `find keyword/KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find c/po` returns `Bernice Yu`<br>
-  ![result for 'find po'](images/findPoResult.png)
+
+> <figure>
+>  <img src="images/findPoResult.png" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <figcaption style="text-align: center; font-style: italic;">Output after entering 'find c/po'</figcaption>
+> </figure>
 
 <box type="tip" seamless>
 
