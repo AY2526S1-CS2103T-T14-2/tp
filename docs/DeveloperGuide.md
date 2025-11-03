@@ -544,7 +544,129 @@ testers are expected to do more *exploratory* testing.
    ii. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Help
+
+1. Viewing the help window
+
+   i. Prerequisites: Application is running.
+
+   ii. Test case: `help`<br>
+      Expected: Help window opens. Status message indicates help opened. Command box remains usable.
+
+   iii. Test case: `help something`<br>
+      Expected: Help window opens. Status message indicates help opened. Command box remains usable.
+
+### List
+
+1. Listing all persons
+
+   i. Prerequisites: Application contains at least one person.
+
+   ii. Test case: `list`<br>
+      Expected: All persons are shown. Status message indicates number of persons listed. Timestamp in the status bar is updated.
+
+   iii. Test case: `list 123`<br>
+      Expected: All persons are shown. Status message indicates number of persons listed. Timestamp in the status bar is updated.    
+
+### Add
+
+1. Adding a person with all required fields
+
+   i. Prerequisites: None.
+
+   ii. Test case: `add n/John Doe p/98765432 c/Apple e/john@apple.com a/1, Infinite Loop s/uncontacted`<br>
+      Expected: New contact is added to the end of the list. Details shown in status message. Timestamp updated.
+
+   iii. Test case: Duplicate add (same name and phone)<br>
+      Expected: Error message indicating duplicate person. No changes to list. Status bar remains the same.
+
+   iv. Test case: Missing required field (e.g. omit `n/`)<br>
+      Expected: Error message indicating invalid command format. No changes to list.
+
+### Edit
+
+1. Editing fields of an existing person
+
+   i. Prerequisites: List all persons using `list`. Multiple persons in the list.
+
+   ii. Test case: `edit 1 n/Jane Doe e/jane@example.com`<br>
+      Expected: First contact's name and email updated. Details of edited contact shown in status message. Timestamp updated.
+
+   iii. Test case: `edit 0 n/Bob`<br>
+      Expected: Error message indicating invalid index. No changes to list. Status bar remains the same.
+
+   iv. Test case: `edit 1` (no fields)<br>
+      Expected: Error message indicating at least one field must be provided. No changes to list.
+
+   v. Test case: Edit resulting in duplicate (same name and phone as another contact)<br>
+      Expected: Error message indicating duplicate person. No changes to list.
+
+### Find
+
+1. Finding persons by different fields
+
+   i. Prerequisites: Have multiple persons with distinct names/companies/statuses/products.
+
+   ii. Test case: `find n/John`<br>
+      Expected: Shows persons with names containing "John" (case-insensitive). Status message indicates number of persons listed. Timestamp updated.
+
+   iii. Test case: `find c/po`<br>
+      Expected: Shows persons whose company contains "po" (case-insensitive substring).
+
+   iv. Test case: `find s/successful`<br>
+      Expected: Shows only persons with status exactly `successful`.
+
+   v. Test case: `find` (no prefixes)
+      
+      Expected: Error message indicating at least one field is required. No changes to list.
+
+### Clear
+
+1. Clearing all entries
+
+   i. Prerequisites: List contains at least one person.
+
+   ii. Test case: `clear`<br>
+      Expected: All contacts removed. Status message indicates clear success. Timestamp updated. A single `undo` restores all contacts.
+
+### Undo
+
+1. Undoing the last modifying command
+
+   i. Prerequisites: Have executed at least one successful modifying command.
+
+   ii. Test case: After `add ...`, run `undo`<br>
+      Expected: The added contact is removed. Status message indicates undo success. Timestamp updated.
+
+   iii. Test case: After `delete 1`, run `undo`<br>
+      Expected: The deleted contact is restored. Status message indicates undo success. Timestamp updated.
+
+   iv. Test case: No prior modifying command, run `undo`<br>
+      Expected: Error message indicating nothing to undo. No changes to list or status bar.
+
+### Redo
+
+1. Redoing the most recently undone command
+
+   i. Prerequisites: Perform a successful `undo`.
+
+   ii. Test case: After undoing an add, run `redo`<br>
+      Expected: The contact is added back. Status message indicates redo success. Timestamp updated.
+
+   iii. Test case: After undoing a delete, run `redo`<br>
+      Expected: The contact is deleted again. Status message indicates redo success. Timestamp updated.
+
+   iv. Test case: No preceding `undo`, run `redo`<br>
+      Expected: Error message indicating nothing to redo. No changes to list or status bar.
+
+### Exit
+
+1. Exiting the application
+
+   i. Prerequisites: Application is running.
+
+   ii. Test case: `exit`<br>
+      Expected: Application closes. On next launch, window size/position and preferences are restored.
 
 ### Deleting a person
 
@@ -561,12 +683,44 @@ testers are expected to do more *exploratory* testing.
    iv. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+2. Deleting all persons with a specific status (atomic delete-by-status)
+
+   i. Prerequisites: List all persons using `list`. Ensure at least one person with status `unsuccessful` (or another valid status) is present.
+
+   ii. Test case: `delete unsuccessful`<br>
+      Expected: All clients with status `unsuccessful` are deleted at once (single atomic change). Details of the deletion shown in the status message. Timestamp in the status bar is updated. A single `undo` should restore all deleted clients.
+
+   iii. Test case: `delete something` (invalid status)<br>
+      Expected: No person is deleted. Error message shown indicating invalid status. Status bar remains the same.
+
+   iv. Test case: `delete successful` when there are no `successful` clients<br>
+      Expected: No person is deleted. Error message shown indicating no matching persons. Status bar remains the same.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   i. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   Handling data file issues
 
-1. _{ more test cases …​ }_
+   i. Missing data file
+   
+   - Prerequisites: Application is closed. You know the data file path (`[JAR location]/data/addressbook.json`).
+   - Test case: Delete or rename `addressbook.json`. Start the application.
+     
+     Expected: Application starts using sample data. No error dialog is shown. A new data file will be created on the next successful save.
+
+   ii. Corrupted data file (invalid JSON or illegal values)
+   
+   - Prerequisites: Application is closed. You know the data file path.
+   - Test case: Open `addressbook.json` and intentionally corrupt it (e.g. delete a closing brace, change field names, insert invalid values). Start the application.
+     
+     Expected: Application logs that the file could not be loaded and starts with an empty AddressBook. No crash; application remains usable.
+
+   iii. Permission error on save
+   
+   - Prerequisites: Data file exists at `[JAR location]/data/addressbook.json`.
+   - Test case (macOS/Linux): Make the data file or its folder read-only (e.g. `chmod a-w [JAR location]/data` or `chmod a-w addressbook.json`). Start the application and execute a modifying command (e.g. `add`, `delete`, `edit`, `clear`).
+     
+     Expected: Command executes in memory but saving fails. An error message is shown: "Could not save data to file ... due to insufficient permissions ..." (or a generic file I/O error). After restoring write permissions and executing another modifying command, saving succeeds.
+
