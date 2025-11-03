@@ -24,6 +24,8 @@ public class ThemeManager {
 
         scene.getStylesheets().clear();
         scene.getStylesheets().add(getClass().getResource(cssPath).toExternalForm());
+
+        scene.getStylesheets().add(getClass().getResource("/view/Extensions.css").toExternalForm());
     }
 
     /**
@@ -38,6 +40,8 @@ public class ThemeManager {
 
         scene.getStylesheets().clear();
         scene.getStylesheets().add(getClass().getResource(cssPath).toExternalForm());
+
+        scene.getStylesheets().add(getClass().getResource("/view/Extensions.css").toExternalForm());
     }
 
     /**
