@@ -39,8 +39,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
+            + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -56,7 +56,7 @@ public class EditCommand extends Command {
             + PREFIX_PRODUCT + "Beef "
             + PREFIX_PRODUCT + "Potato";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -73,7 +73,7 @@ public class EditCommand extends Command {
             + PREFIX_PRODUCT + "Beef "
             + PREFIX_PRODUCT + "Potato";
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the ClientHub.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -100,10 +100,10 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        assert(personToEdit != null) : "Person to edit should not be null.";
+        assert(personToEdit != null) : "Client to edit should not be null.";
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-        assert(editedPerson != null) : "Edited person should not be null.";
+        assert(editedPerson != null) : "Edited client should not be null.";
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -112,7 +112,7 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         assert(model.getFilteredPersonList()
-                .contains(editedPerson)) : "Edited fields of person should be added.";
+                .contains(editedPerson)) : "Edited fields of client should be added.";
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 

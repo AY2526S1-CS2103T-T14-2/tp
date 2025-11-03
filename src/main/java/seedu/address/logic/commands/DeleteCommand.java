@@ -21,15 +21,15 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list, "
-            + "or all people with the specified status.\n"
+            + ": Deletes the client identified by the index number used in the displayed client list, "
+            + "or all clients with the specified status.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "or STATUS (uncontacted | inprogress | unsuccessful | successful)\n"
             + "Example: " + COMMAND_WORD + " 1 or " + COMMAND_WORD + " unsuccessful";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_DELETE_BY_STATUS_SUCCESS = "Deleted all persons with status: %1$s";
-    public static final String MESSAGE_NO_MATCHING_STATUS = "No persons found with status: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Client: %1$s";
+    public static final String MESSAGE_DELETE_BY_STATUS_SUCCESS = "Deleted all clients with status: %1$s";
+    public static final String MESSAGE_NO_MATCHING_STATUS = "No clients found with status: %1$s";
 
     private final Index targetIndex;
     private final String targetStatus;
