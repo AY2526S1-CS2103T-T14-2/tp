@@ -19,7 +19,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](https://ay2526s1-cs2103t-t14-2.github.io/tp/SettingUp.html).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -213,11 +213,11 @@ Diagrams:
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+* [Documentation guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Documentation.html)
+* [Testing guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Testing.html)
+* [Logging guide](]https://ay2526s1-cs2103t-t14-2.github.io/tp/Logging.html)
+* [Configuration guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Configuration.html)
+* [DevOps guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
