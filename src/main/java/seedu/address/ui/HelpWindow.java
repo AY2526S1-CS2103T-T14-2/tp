@@ -20,7 +20,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String THIRTEENSPACER = "             ";
     public static final String FIVESPACER = "     ";
     public static final String ADD_COMMAND_HELP = "ADD:\nUse: add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS "
-                + "s/STATUS [pdt/PRODUCT]...";
+                + "[s/STATUS] [pdt/PRODUCT]...";
 
     public static final String DELETE_COMMAND_HELP = "DELETE:\n"
                 + "Use: delete INDEX (must be a positive integer) OR "
