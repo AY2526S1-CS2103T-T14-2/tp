@@ -14,6 +14,9 @@ public class ThemeManager {
      * If the same theme is already applied, nothing happens.
      */
     public void apply(Scene scene, Theme theme) {
+        assert scene != null : "Scene must not be null";
+        assert theme != null : "Theme must not be null";
+
         String cssPath = switch (theme) {
         case DARK -> "/view/DarkTheme.css";
         case LIGHT -> "/view/LightTheme.css";
