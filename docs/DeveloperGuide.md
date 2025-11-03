@@ -65,6 +65,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<br>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -81,6 +83,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<br>
 
 ### Logic component
 
@@ -117,6 +121,8 @@ How the parsing works:
 (e.g. `Person` object to be added in an `AddCommand` object)
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<br>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -140,6 +146,7 @@ require one `Product` object per unique product, instead of each `Person` needin
 
 </box>
 
+<br>
 
 ### Storage component
 
@@ -151,6 +158,8 @@ The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `ClientHubStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+<br>
 
 ### Common classes
 
@@ -242,6 +251,9 @@ We plan to give an error message when users try to replace an attribute field wi
 That might be problematic as it might cause confusion to users who want to double-check the changes made.
 We plan to update the success message such that it only shows the attribute field that was change,
 and what value it was changed from and to.
+5. Currently, our whole GUI might not fit everyone's screen resolution, forcing some users to scroll to access products.
+We plan to resize the GUI or shift the elements such that they are more compacted,
+allowing more users to be able to see the whole GUI on their screen.
 
 --------------------------------------------------------------------------------------------------------------------
 
