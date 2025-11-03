@@ -117,7 +117,7 @@
 }
 
 .list-cell:empty {
-    -fx-background-color: white !important;
+    -fx-background-color: #E3E3E3 !important;
 }
 
 .list-cell .label {
