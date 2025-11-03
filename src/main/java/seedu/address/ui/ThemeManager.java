@@ -10,7 +10,7 @@ public class ThemeManager {
     private Theme currentTheme;
 
     /**
-     * Applies the specified theme to the scene.
+     * Applies the specified theme to the MainWindow.
      * If the same theme is already applied, nothing happens.
      */
     public void apply(Scene scene, Theme theme) {
@@ -26,10 +26,14 @@ public class ThemeManager {
         scene.getStylesheets().add(getClass().getResource(cssPath).toExternalForm());
     }
 
+    /**
+     * Applies the specified theme to the HelpWindow.
+     * If the same theme is already applied, nothing happens.
+     */
     public void applyHelp(Scene scene, Theme theme) {
         String cssPath = switch (theme) {
-            case DARK -> "/view/DarkHelpWindow.css";
-            case LIGHT -> "/view/LightHelpWindow.css";
+        case DARK -> "/view/DarkHelpWindow.css";
+        case LIGHT -> "/view/LightHelpWindow.css";
         };
 
         scene.getStylesheets().clear();
