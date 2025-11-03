@@ -35,7 +35,7 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alice "
             + PREFIX_COMPANY + "Google "
-            + PREFIX_STATUS + "Uncontacted "
+            + PREFIX_STATUS + "uncontacted "
             + PREFIX_PRODUCT + "Laptop ";
 
     private final Predicate<Person> predicate;
