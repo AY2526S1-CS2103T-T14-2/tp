@@ -300,6 +300,11 @@ and what value it was changed from and to.
 5. Currently, our whole GUI might not fit everyone's screen resolution, forcing some users to scroll to access products.
 We plan to resize the GUI or shift the elements such that they are more compacted,
 allowing more users to be able to see the whole GUI on their screen.
+6. Currently, when user omits a compulsory attribute field when adding a client,
+the error message does not specify which field is missing.
+This leads to poor User Experience as users may need to spend additional time to identify which field is missing.
+We plan to refine the error message when users miss out on compulsory fields,
+such that it specifies which fields are missing, saving users the troubles of trying to identify the missing fields.
 
 --------------------------------------------------------------------------------------------------------------------
 
