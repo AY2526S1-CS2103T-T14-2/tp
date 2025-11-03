@@ -50,17 +50,20 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String REDO_COMMAND_HELP_HEADER = "REDO:";
     public static final String REDO_COMMAND_HELP_USAGE = "Use: redo";
 
+    public static final String EXIT_COMMAND_HELP_HEADER = "EXIT:";
+    public static final String EXIT_COMMAND_HELP_USAGE = "Use: exit";
+
     public static final String SINGLE_LINE_HEADERS = LIST_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
             + HELP_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
             + CLEAR_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
             + UNDO_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
-            + REDO_COMMAND_HELP_HEADER;
+            + REDO_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER + EXIT_COMMAND_HELP_HEADER;
 
     public static final String SINGLE_LINE_USE = LIST_COMMAND_HELP_USAGE + THIRTEENSPACER
             + HELP_COMMAND_HELP_USAGE + "           "
             + CLEAR_COMMAND_HELP_USAGE + THIRTEENSPACER + " "
             + UNDO_COMMAND_HELP_USAGE + "            "
-            + REDO_COMMAND_HELP_USAGE;
+            + REDO_COMMAND_HELP_USAGE + "            " + EXIT_COMMAND_HELP_USAGE;
 
     public static final String HELP_MESSAGE = "Here are all the useful commands:\n\n"
                 + ADD_COMMAND_HELP + "\n\n"
