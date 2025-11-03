@@ -69,10 +69,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, "Index is invalid. Index must be a positive number within the list.");
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY,
+                "Index is invalid. Index must be a positive number within the list.");
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, "Index is invalid. Index must be a positive number within the list.");
+        assertParseFailure(parser, "0" + NAME_DESC_AMY,
+                "Index is invalid. Index must be a positive number within the list.");
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -103,8 +105,8 @@ public class EditCommandParserTest {
                 Product.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC +
+                        VALID_ADDRESS_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
