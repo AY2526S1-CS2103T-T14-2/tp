@@ -101,7 +101,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `ClientHubParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
@@ -112,7 +112,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `ClientHubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ClientHubParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ClientHubParser` returns back as a `Command` object.
 * The `Command` objects contain examples of the appropriate format of the command, as well as the data passed in by the user
 (e.g. `Person` object to be added in an `AddCommand` object)
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
@@ -162,98 +162,52 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedClientHub`. It extends `ClientHub` with an undo/redo history, stored internally as an `ClientHubStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is implemented in `ModelManager` with two stacks of deep-copied `AddressBook` states:
 
-* `VersionedClientHub#commit()` — Saves the current address book state in its history.
-* `VersionedClientHub#undo()` — Restores the previous address book state from its history.
-* `VersionedClientHub#redo()` — Restores a previously undone address book state from its history.
+- `undoStack`: history of previous states
+- `redoStack`: history of states that were undone and can be restored
 
-These operations are exposed in the `Model` interface as `Model#commitClientHub()`, `Model#undoClientHub()` and `Model#redoClientHub()` respectively.
+Operations that modify stored data (e.g., `add`, `edit`, `delete`, `clear`) push a snapshot of the current `AddressBook` onto `undoStack` BEFORE applying the change, and CLEAR the `redoStack`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+- `setAddressBook(...)`: pushes a snapshot, clears `redoStack`, then replaces the state
+- `addPerson(...)`: pushes a snapshot, clears `redoStack`, then adds
+- `setPerson(...)`: pushes a snapshot, clears `redoStack`, then updates
+- `deletePerson(...)`: pushes a snapshot, clears `redoStack`, then removes
 
-Step 1. The user launches the application for the first time. The `VersionedClientHub` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Atomicity: For batch-like operations (e.g., delete-by-status), the command constructs an updated copy and calls `model.setAddressBook(updated)` ONCE so the entire batch is treated as a single undoable action.
 
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
+`undo()`:
+- Fails if `undoStack` is empty (`canUndo() == false`)
+- Pushes the current state to `redoStack`
+- Pops the top from `undoStack` and restores it via `addressBook.resetData(previous)`
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitClientHub()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `ClientHubStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+`redo()`:
+- Fails if `redoStack` is empty (`canRedo() == false`)
+- Pushes the current state to `undoStack`
+- Pops the top from `redoStack` and restores it via `addressBook.resetData(next)`
 
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
+Command routing:
+- `UndoCommand#execute` calls `model.undo()`; `RedoCommand#execute` calls `model.redo()`
+- The parser recognizes `undo` and `redo` keywords and instantiates the respective commands
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitClientHub()`, causing another modified address book state to be saved into the `ClientHubStateList`.
+Persistence:
+- After a command executes, `LogicManager` saves the current `AddressBook` via `storage.saveAddressBook(model.getAddressBook())`. This includes states after `undo` and `redo`, ensuring the reverted or restored state is persisted.
 
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
+Diagrams:
+- The existing undo/redo sequence diagrams remain applicable conceptually (command executes through Logic into Model, which reverts/restores the in-memory state and then is saved).
 
-<box type="info" seamless>
+#### Design considerations
 
-**Note:** If a command fails its execution, it will not call `Model#commitClientHub()`, so the address book state will not be saved into the `ClientHubStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoClientHub()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial ClientHub state, then there are no previous ClientHub states to restore. The `undo` command uses `Model#canUndoClientHub()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoClientHub()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `ClientHubStateList.size() - 1`, pointing to the latest address book state, then there are no undone ClientHub states to restore. The `redo` command uses `Model#canRedoClientHub()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the client list, such as `list`, will usually not call `Model#commitClientHub()`, `Model#undoClientHub()` or `Model#redoClientHub()`. Thus, the `ClientHubStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitClientHub()`. Since the `currentStatePointer` is not pointing at the end of the `ClientHubStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+- Chosen approach: Snapshot the entire `AddressBook` for each modifying command
+  - Pros: Simple and robust; commands do not need bespoke inverse logic
+  - Cons: Higher memory usage for large datasets
+- Alternative: Command-specific inverse operations
+  - Pros: Lower memory footprint
+  - Cons: Higher complexity; more room for errors across many commands
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -568,7 +522,129 @@ testers are expected to do more *exploratory* testing.
    ii. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Help
+
+1. Viewing the help window
+
+   i. Prerequisites: Application is running.
+
+   ii. Test case: `help`<br>
+      Expected: Help window opens. Status message indicates help opened. Command box remains usable.
+
+   iii. Test case: `help something`<br>
+      Expected: Help window opens. Status message indicates help opened. Command box remains usable.
+
+### List
+
+1. Listing all persons
+
+   i. Prerequisites: Application contains at least one person.
+
+   ii. Test case: `list`<br>
+      Expected: All persons are shown. Status message indicates number of persons listed. Timestamp in the status bar is updated.
+
+   iii. Test case: `list 123`<br>
+      Expected: All persons are shown. Status message indicates number of persons listed. Timestamp in the status bar is updated.    
+
+### Add
+
+1. Adding a person with all required fields
+
+   i. Prerequisites: None.
+
+   ii. Test case: `add n/John Doe p/98765432 c/Apple e/john@apple.com a/1, Infinite Loop s/uncontacted`<br>
+      Expected: New contact is added to the end of the list. Details shown in status message. Timestamp updated.
+
+   iii. Test case: Duplicate add (same name and phone)<br>
+      Expected: Error message indicating duplicate person. No changes to list. Status bar remains the same.
+
+   iv. Test case: Missing required field (e.g. omit `n/`)<br>
+      Expected: Error message indicating invalid command format. No changes to list.
+
+### Edit
+
+1. Editing fields of an existing person
+
+   i. Prerequisites: List all persons using `list`. Multiple persons in the list.
+
+   ii. Test case: `edit 1 n/Jane Doe e/jane@example.com`<br>
+      Expected: First contact's name and email updated. Details of edited contact shown in status message. Timestamp updated.
+
+   iii. Test case: `edit 0 n/Bob`<br>
+      Expected: Error message indicating invalid index. No changes to list. Status bar remains the same.
+
+   iv. Test case: `edit 1` (no fields)<br>
+      Expected: Error message indicating at least one field must be provided. No changes to list.
+
+   v. Test case: Edit resulting in duplicate (same name and phone as another contact)<br>
+      Expected: Error message indicating duplicate person. No changes to list.
+
+### Find
+
+1. Finding persons by different fields
+
+   i. Prerequisites: Have multiple persons with distinct names/companies/statuses/products.
+
+   ii. Test case: `find n/John`<br>
+      Expected: Shows persons with names containing "John" (case-insensitive). Status message indicates number of persons listed. Timestamp updated.
+
+   iii. Test case: `find c/po`<br>
+      Expected: Shows persons whose company contains "po" (case-insensitive substring).
+
+   iv. Test case: `find s/successful`<br>
+      Expected: Shows only persons with status exactly `successful`.
+
+   v. Test case: `find` (no prefixes)
+      
+      Expected: Error message indicating at least one field is required. No changes to list.
+
+### Clear
+
+1. Clearing all entries
+
+   i. Prerequisites: List contains at least one person.
+
+   ii. Test case: `clear`<br>
+      Expected: All contacts removed. Status message indicates clear success. Timestamp updated. A single `undo` restores all contacts.
+
+### Undo
+
+1. Undoing the last modifying command
+
+   i. Prerequisites: Have executed at least one successful modifying command.
+
+   ii. Test case: After `add ...`, run `undo`<br>
+      Expected: The added contact is removed. Status message indicates undo success. Timestamp updated.
+
+   iii. Test case: After `delete 1`, run `undo`<br>
+      Expected: The deleted contact is restored. Status message indicates undo success. Timestamp updated.
+
+   iv. Test case: No prior modifying command, run `undo`<br>
+      Expected: Error message indicating nothing to undo. No changes to list or status bar.
+
+### Redo
+
+1. Redoing the most recently undone command
+
+   i. Prerequisites: Perform a successful `undo`.
+
+   ii. Test case: After undoing an add, run `redo`<br>
+      Expected: The contact is added back. Status message indicates redo success. Timestamp updated.
+
+   iii. Test case: After undoing a delete, run `redo`<br>
+      Expected: The contact is deleted again. Status message indicates redo success. Timestamp updated.
+
+   iv. Test case: No preceding `undo`, run `redo`<br>
+      Expected: Error message indicating nothing to redo. No changes to list or status bar.
+
+### Exit
+
+1. Exiting the application
+
+   i. Prerequisites: Application is running.
+
+   ii. Test case: `exit`<br>
+      Expected: Application closes. On next launch, window size/position and preferences are restored.
 
 ### Deleting a person
 
@@ -585,12 +661,44 @@ testers are expected to do more *exploratory* testing.
    iv. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+2. Deleting all persons with a specific status (atomic delete-by-status)
+
+   i. Prerequisites: List all persons using `list`. Ensure at least one person with status `unsuccessful` (or another valid status) is present.
+
+   ii. Test case: `delete unsuccessful`<br>
+      Expected: All clients with status `unsuccessful` are deleted at once (single atomic change). Details of the deletion shown in the status message. Timestamp in the status bar is updated. A single `undo` should restore all deleted clients.
+
+   iii. Test case: `delete something` (invalid status)<br>
+      Expected: No person is deleted. Error message shown indicating invalid status. Status bar remains the same.
+
+   iv. Test case: `delete successful` when there are no `successful` clients<br>
+      Expected: No person is deleted. Error message shown indicating no matching persons. Status bar remains the same.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   i. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   Handling data file issues
 
-1. _{ more test cases …​ }_
+   i. Missing data file
+   
+   - Prerequisites: Application is closed. You know the data file path (`[JAR location]/data/addressbook.json`).
+   - Test case: Delete or rename `addressbook.json`. Start the application.
+     
+     Expected: Application starts using sample data. No error dialog is shown. A new data file will be created on the next successful save.
+
+   ii. Corrupted data file (invalid JSON or illegal values)
+   
+   - Prerequisites: Application is closed. You know the data file path.
+   - Test case: Open `addressbook.json` and intentionally corrupt it (e.g. delete a closing brace, change field names, insert invalid values). Start the application.
+     
+     Expected: Application logs that the file could not be loaded and starts with an empty AddressBook. No crash; application remains usable.
+
+   iii. Permission error on save
+   
+   - Prerequisites: Data file exists at `[JAR location]/data/addressbook.json`.
+   - Test case (macOS/Linux): Make the data file or its folder read-only (e.g. `chmod a-w [JAR location]/data` or `chmod a-w addressbook.json`). Start the application and execute a modifying command (e.g. `add`, `delete`, `edit`, `clear`).
+     
+     Expected: Command executes in memory but saving fails. An error message is shown: "Could not save data to file ... due to insufficient permissions ..." (or a generic file I/O error). After restoring write permissions and executing another modifying command, saving succeeds.
+
