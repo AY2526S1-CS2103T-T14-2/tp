@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
@@ -66,7 +67,15 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_emptyList_throwsCommandException() {
+        String listCommand = ListCommand.COMMAND_WORD;
+        assertCommandFailure(listCommand, CommandException.class,
+                "No persons found in the address book.", model);
+    }
+
+    @Test
     public void execute_validCommand_success() throws Exception {
+        model.addPerson(ALICE);
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
