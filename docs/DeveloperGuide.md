@@ -333,37 +333,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ClientHub` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add a person**
+**Use case: UC01 - Add a client**
 
 **MSS**
-1.  User requests to add a person with all the required details.
-2.  ClientHub adds the person to ClientHub.
+1.  User requests to add a client with all the required details.
+2.  ClientHub adds the client to ClientHub.
 
     Use case ends.
 
 **Extensions**
-* 1a. The given person's details are of invalid format.
+* 1a. The given client's details are of invalid format.
 
   * 1a1. ClientHub shows an error message.
 
     Use case ends.
 
-* 1b. The given person's details are valid but have the same name and phone number as another person in ClientHub.
+* 1b. The given client's details are valid but have the same name and phone number as another client in ClientHub.
 
   * 1b1. ClientHub shows an error message.
 
     Use case ends.
 
-**Use case: UC02 - Find persons**
+**Use case: UC02 - Find clients**
 
 **MSS**
-1.  User requests to find persons with a specific attribute value.
-2.  ClientHub shows a list of persons matching the search criteria.
+1.  User requests to find clients with a specific attribute value.
+2.  ClientHub shows a list of clients matching the search criteria.
 
     Use case ends.
 
 **Extensions**
-* 1a. No person found.
+* 1a. No client found.
 
   * 1a1. ClientHub shows an error message.
 
@@ -375,11 +375,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC03 - Delete a person**
+**Use case: UC03 - Delete a client**
 
 **MSS**
-1.  User requests to delete a specific person by their index.
-2.  ClientHub deletes the person.
+1.  User requests to delete a specific client by their index.
+2.  ClientHub deletes the client.
 
     Use case ends.
 
@@ -390,16 +390,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC04 - Delete all persons with a specific status**
+**Use case: UC04 - Delete all clients with a specific status**
 
 **MSS**
-1.  User requests to delete all persons with a specific status.
-2.  ClientHub deletes all matching persons.
+1.  User requests to delete all clients with a specific status.
+2.  ClientHub deletes all matching clients.
 
     Use case ends.
 
 **Extensions**
-* 1a. No persons with the specified status exist.
+* 1a. No clients with the specified status exist.
 
     * 1a1. ClientHub shows an error message.
 
@@ -411,11 +411,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC05 - Edit a person**
+**Use case: UC05 - Edit a client**
 
 **MSS**
-1.  User requests to edit a person by index with new details.
-2.  ClientHub updates the person's details.
+1.  User requests to edit a client by index with new details.
+2.  ClientHub updates the client's details.
 
     Use case ends.
 
@@ -432,19 +432,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC06 - List all persons**
+**Use case: UC06 - List all clients**
 
 **MSS**
-1.  User requests to list all persons.
-2.  ClientHub shows a list of all persons.
+1.  User requests to list all clients.
+2.  ClientHub shows a list of all clients.
 
     Use case ends.
 
-**Use case: UC07 - Clear all persons**
+**Use case: UC07 - Clear all clients**
 
 **MSS**
-1.  User requests to clear all persons.
-2.  ClientHub clears all persons from the list.
+1.  User requests to clear all clients.
+2.  ClientHub clears all clients from the list.
 
     Use case ends.
 
@@ -509,10 +509,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 **Status**: Labels that are used to indicate the progress of communication or follow-up between the sales representative (user) and the client)
-- *Uncontacted* - The client has not been reached out to yet
-- *Inprogress* - Communication is ongoing with the client, but no outcome has been determined
-- *Successful* - A successful deal has been reached between the sales representative and the client
-- *Unsuccessful* - An attempt to deal with the client was not successful
+- *uncontacted* - The client has not been reached out to yet
+- *inprogress* - Communication is ongoing with the client, but no outcome has been determined
+- *successful* - A successful deal has been reached between the sales representative and the client
+- *unsuccessful* - An attempt to deal with the client was not successful
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
