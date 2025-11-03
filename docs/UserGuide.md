@@ -160,7 +160,7 @@ If you are using the PDF version, be careful when copying commands. Spaces may b
 
 ### View help: `help`
 
-If you cannot remember all the commands, you can view all the commands by typing `help`.
+Don't worry if you cannot remember all the commands, you can view all the commands by typing `help`.
 
 **Format**: `help`
 
@@ -171,7 +171,7 @@ If you cannot remember all the commands, you can view all the commands by typing
 
 ### Clear all entries: `clear`
 
-Clears all entries from ClientHub.
+Removes all clients from ClientHub.
 
 **Format**: `clear`
 
@@ -203,15 +203,20 @@ Adds a client to ClientHub.
 
 
 Examples:
-
-- `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken`
-  - adds a client with name `John Doe`, phone number `98765432`, working at `Chargrill Bar`, with email `johnd@example.com`, address `311, Clementi Ave 2, #02-25`, `uncontacted` status, and having product `chicken`
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+<code>add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken</code>
+  </div>
+This adds a client with name <code>John Doe</code>, phone number <code>98765432</code>, working at <code>Chargrill Bar</code>, with email <code>johnd@example.com</code>, address <code>311, Clementi Ave 2, #02-25</code>, whose status is <code>uncontacted</code>, and having product <code>chicken</code>.
 <br>
 <br>
-- `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken pdt/Fish`
-  - adds a client with name `John Doe`, phone number `98765432`, working at `Chargrill Bar`, with email `johnd@example.com`, address `311, Clementi Ave 2, #02-25`, `uncontacted` status, and having product `chicken` and `fish`
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken <b>pdt/Fish</b></code>
+  </div>
+On top of this, additional products like <code>fish</code> can be included as well.
 
 
+<br>
 <br>
 <br>
 
@@ -245,12 +250,27 @@ Editing the product field of a client completely deletes all existing products t
 replacing it with your requested edits i.e adding of products is **not cumulative**.
 </box>
 
-Examples:
+Examples:<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 1 p/91234567 e/johndoe@example.com</code>
+  </div>
+This edits the phone number and email address of the 1st client in the list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 2 n/Betsy Crower pdt/</code>
+  </div>
+This edits the name of the 2nd client in the list to be <code>Betsy Crower</code> and clears all existing products.
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 3 pdt/Chicken</code>
+  </div>
+This clears all current products tagged to the 3rd client in the list, replacing it with <code>Chicken</code> only.
 
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client in the list to be `91234567` and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower pdt/` Edits the name of the 2nd client in the list to be `Betsy Crower` and clears all existing products.
-- `edit 3 pdt/Chicken` Clears all current products tagged to the 3rd client in the list, replacing it with `Chicken` only.
-
+<br>
 <br>
 <br>
 
@@ -279,10 +299,25 @@ Finds clients who have any of the matching details.
 </box>
 
 Examples:
-
-- `find n/John` -> matches `john` and `John Doe` since both contain `John`
-- `find s/successful` -> matches only `successful` (not `unsuccessful`) since statuses require exact match
-- `find c/po` -> matches `Bernice Yu` because `Bernice Yu` is working at `Popular`, which contains `Po`<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find n/John</code>
+  </div>
+This matches <code>john</code> and <code>John Doe</code> since both contain <code>John</code>
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find s/successful</code>
+  </div>
+This matches only <code>successful</code> (not <code>unsuccessful</code>) since statuses require exact match
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find c/po</code>
+  </div>
+This matches <code>Bernice Yu</code> because <code>Bernice Yu</code> is working at <code>Popular</code>, which contains <code>Po</code><br>
+  
   ![result for 'find pop'](images/findPoResult.png)
 
 <box type="tip" seamless>
@@ -290,6 +325,7 @@ Examples:
 `list` can be used after `find` to view the original list of clients again.
 </box>
 
+<br>
 <br>
 <br>
 
@@ -307,12 +343,29 @@ Deletes a certain client or every client with a specified status from ClientHub.
 - `STATUS` **must be either** `uncontacted`, `inprogress`, `unsuccessful` or `successful`
 
 Examples:
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>list</code><br>
+  <code>delete 2</code>
+  </div>
+Keying in <code>list</code> followed by <code>delete 2</code> deletes the 2nd client in the displayed list.
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find n/Betsy</code><br>
+  <code>delete 1</code>
+  </div>
+Keying in <code>find n/Betsy</code> followed by <code>delete 1</code> deletes the 1st client in the displayed list of the `find` command.
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find n/John</code><br>
+  <code>delete unsuccessful</code>
+  </div>
+Keying in <code>find n/John</code> followed by <code>delete unsuccessful</code> deletes every client with <code>unsuccessful</code> status, regardless of whether the client is in the results of the `find` command.
 
-- `list` followed by `delete 2` deletes the 2nd client in the displayed list.
-- `find n/Betsy` followed by `delete 1` deletes the 1st client in the displayed list of the `find` command.
-- `find n/John` followed by `delete unsuccessful` deletes every client with `unsuccessful` status,
-  regardless of whether the client is in the results of the `find` command.
-
+<br>
 <br>
 <br>
 
@@ -335,17 +388,19 @@ Reverses the changes of the most recent **successful** command that modifies the
 </box>
 
 Example:
-```
-edit 1 n/John Doe
-find John
-delete 2
-undo
-undo
-- The first `undo` reverses the `delete` command, and the second `undo` reverses the `edit` command <br>
-- The `find` command is skipped because it does not modify stored data.
-```
-
-<box type="important" seamless>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 1 n/John Doe</code><br>
+  <code>find John</code><br>
+  <code>delete 2</code><br>
+  <code>undo</code><br>
+  <code>undo</code>
+  </div>
+The first <code>undo</code> reverses the <code>delete</code> command, and the second <code>undo</code> reverses the <code>edit</code> command.
+The <code>find</code> command is skipped because it does not modify stored data.
+<br>
+<br>
+<br>
+<box type="info" seamless>
 
 `undo` can only reverse changes in the current instance of ClientHub (commands executed before exiting and reopening the application cannot be undone).
 </box>
@@ -358,6 +413,19 @@ undo
 **Format**: `redo`
 
 Restores the changes that were undone by the most recent `undo` command.
+
+Example:
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 1 n/John Doe</code><br>
+  <code>find John</code><br>
+  <code>delete 2</code><br>
+  <code>undo</code><br>
+  <code>redo</code>
+  </div>
+The first <code>undo</code> reverses the <code>delete</code> command, and the <code>redo</code> reverses the <code>undo</code> command and executes the <code>delete</code> command again.
+<br>
+<br>
+<br>
 
 <box type="info" seamless>
 
