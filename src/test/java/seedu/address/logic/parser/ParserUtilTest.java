@@ -125,6 +125,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parsePhone_emptyString() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(""));
+    }
+
+    @Test
     public void parseCompany_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
     }
