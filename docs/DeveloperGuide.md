@@ -287,6 +287,7 @@ Sales representatives will have more efficient control over tracking their clien
 thereby improving their operational efficiency. This is especially so for users who are more comfortable with
 CLIs compared to GUIs which can be complex and overwhelming
 
+<br>
 
 ### User stories
 
@@ -326,68 +327,166 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | forgetful sales representative with many clients                             | be able to see the contact details of my most frequently contacted clients                    | check up on their wellbeing and need for products/services, and build a strong rapport with them |
 | `*` | sales representative                                                         | be able to put links to documents or sheets into contact details                              | keep track of more information about each client                                                 |
 
+<br>
+
 ### Use cases
 
 (For all use cases below, the **System** is the `ClientHub` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+**Use case: UC01 - Add a client**
 
 **MSS**
-
-1.  User requests to add a new person.
-2.  ClientHub requests the person details from the user.
-3.  User provides the person details.
-4.  ClientHub adds the person to ClientHub.
+1.  User requests to add a client with all the required details.
+2.  ClientHub adds the client to ClientHub.
 
     Use case ends.
 
 **Extensions**
-* 3a. The given person details are invalid.
+* 1a. The given client's details are of invalid format.
 
-    * 3a1. ClientHub shows an error message.
+  * 1a1. ClientHub shows an error message.
 
-      Use case resumes at step 2.
+    Use case ends.
 
-**Use case: Find a Person**
+* 1b. The given client's details are valid but have the same name and phone number as another client in ClientHub.
+
+  * 1b1. ClientHub shows an error message.
+
+    Use case ends.
+
+**Use case: UC02 - Find clients**
 
 **MSS**
-1.  User requests to find persons by name.
-2.  ClientHub requests the name or part of the name to search for.
-3.  User provides the name or part of the name to search for.
-4.  ClientHub shows a list of persons whose names contain the given name or part of the name.
+1.  User requests to find clients with a specific attribute value.
+2.  ClientHub shows a list of clients matching the search criteria.
 
     Use case ends.
 
 **Extensions**
-* 4a. No persons found.
-* 4a1. ClientHub shows a message indicating that no persons were found.
+* 1a. No client found.
+
+  * 1a1. ClientHub shows an error message.
 
     Use case ends.
 
-**Use case: Delete a person**
+* 1b. The given attribute values are of invalid format.
+
+  * 1b1. ClientHub shows an error message.
+
+    Use case ends.
+
+**Use case: UC03 - Delete a client**
 
 **MSS**
-
-1.  User requests to list persons
-2.  ClientHub shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  ClientHub deletes the person
+1.  User requests to delete a specific client by their index.
+2.  ClientHub deletes the client.
 
     Use case ends.
 
 **Extensions**
+* 1a. The given index is invalid.
 
-* 2a. The list is empty.
+    * 1a1. ClientHub shows an error message.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC04 - Delete all clients with a specific status**
 
-    * 3a1. ClientHub shows an error message.
+**MSS**
+1.  User requests to delete all clients with a specific status.
+2.  ClientHub deletes all matching clients.
 
-      Use case resumes at step 2.
+    Use case ends.
 
-*{More to be added}*
+**Extensions**
+* 1a. No clients with the specified status exist.
+
+    * 1a1. ClientHub shows an error message.
+
+      Use case ends.
+
+* 1b. The given status is invalid.
+
+    * 1b1. ClientHub shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Edit a client**
+
+**MSS**
+1.  User requests to edit a client by index with new details.
+2.  ClientHub updates the client's details.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+
+    * 1a1. ClientHub shows an error message.
+
+      Use case ends.
+
+* 1b. The given details are of invalid format.
+
+    * 1b1. ClientHub shows an error message.
+
+      Use case ends.
+
+**Use case: UC06 - List all clients**
+
+**MSS**
+1.  User requests to list all clients.
+2.  ClientHub shows a list of all clients.
+
+    Use case ends.
+
+**Use case: UC07 - Clear all clients**
+
+**MSS**
+1.  User requests to clear all clients.
+2.  ClientHub clears all clients from the list.
+
+    Use case ends.
+
+**Use case: UC08 - Undo previous command**
+
+**MSS**
+1.  User requests to undo the previous command.
+2.  ClientHub reverts the previous action.
+
+    Use case ends.
+
+**Extensions**
+* 1a. There are no previous commands to undo.
+
+    * 1a1. ClientHub shows an error message.
+
+      Use case ends.
+
+**Use case: UC09 - Redo previous undone command**
+
+**MSS**
+1.  User requests to redo the previous undone command.
+2.  ClientHub reapplies the previously undone action.
+
+    Use case ends.
+
+**Extensions**
+* 1a. There are no undone commands to redo.
+
+    * 1a1. ClientHub shows an error message.
+
+      Use case ends.
+
+**Use case: UC10 - View help**
+
+**MSS**
+1.  User requests help.
+2.  ClientHub displays the help window with command instructions.
+
+    Use case ends.
+
+<br>
 
 ### Non-Functional Requirements
 
@@ -406,14 +505,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 13. Users should not be able to see each others' client lists, they should be private and visible only to the current user.
 14. The CLI should provide clear, actionable error messages for all invalid commands.
 
-*{More to be added}*
+<br>
 
 ### Glossary
 **Status**: Labels that are used to indicate the progress of communication or follow-up between the sales representative (user) and the client)
-- *Uncontacted* - The client has not been reached out to yet
-- *Inprogress* - Communication is ongoing with the client, but no outcome has been determined
-- *Successful* - A successful deal has been reached between the sales representative and the client
-- *Unsuccessful* - An attempt to deal with the client was not successful
+- *uncontacted* - The client has not been reached out to yet
+- *inprogress* - Communication is ongoing with the client, but no outcome has been determined
+- *successful* - A successful deal has been reached between the sales representative and the client
+- *unsuccessful* - An attempt to deal with the client was not successful
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
