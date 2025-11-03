@@ -287,6 +287,7 @@ Sales representatives will have more efficient control over tracking their clien
 thereby improving their operational efficiency. This is especially so for users who are more comfortable with
 CLIs compared to GUIs which can be complex and overwhelming
 
+<br>
 
 ### User stories
 
@@ -326,29 +327,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | forgetful sales representative with many clients                             | be able to see the contact details of my most frequently contacted clients                    | check up on their wellbeing and need for products/services, and build a strong rapport with them |
 | `*` | sales representative                                                         | be able to put links to documents or sheets into contact details                              | keep track of more information about each client                                                 |
 
+<br>
+
 ### Use cases
 
 (For all use cases below, the **System** is the `ClientHub` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+**Use case: UC01 - Add a person**
 
 **MSS**
-
 1.  User requests to add a new person.
-2.  ClientHub requests the person details from the user.
-3.  User provides the person details.
+2.  ClientHub requests the person's details from the user.
+3.  User provides the person's details.
 4.  ClientHub adds the person to ClientHub.
 
     Use case ends.
 
 **Extensions**
-* 3a. The given person details are invalid.
+* 3a. The given person's details are of invalid format.
 
-    * 3a1. ClientHub shows an error message.
+  * 3a1. ClientHub shows an error message on format.
 
-      Use case resumes at step 2.
+    Use case resumes from step 2.
 
-**Use case: Find a Person**
+* 3b. The given person's details are valid but have the same name and phone number as another person in ClientHub.
+
+  * 3b1. ClientHub shows an error message on duplicate person.
+
+    Use case resumes from step 2.
+
+**Use case: UC02 - Find a Person**
 
 **MSS**
 1.  User requests to find persons by name.
@@ -360,14 +368,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 4a. No persons found.
-* 4a1. ClientHub shows a message indicating that no persons were found.
+  * 4a1. ClientHub shows a message indicating that no persons were found.
 
     Use case ends.
 
-**Use case: Delete a person**
+**Use case: UC03 - Delete a person**
 
 **MSS**
-
 1.  User requests to list persons
 2.  ClientHub shows a list of persons
 3.  User requests to delete a specific person in the list
@@ -376,7 +383,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty.
 
   Use case ends.
@@ -387,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+<br>
 
 ### Non-Functional Requirements
 
@@ -406,7 +412,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 13. Users should not be able to see each others' client lists, they should be private and visible only to the current user.
 14. The CLI should provide clear, actionable error messages for all invalid commands.
 
-*{More to be added}*
+<br>
 
 ### Glossary
 **Status**: Labels that are used to indicate the progress of communication or follow-up between the sales representative (user) and the client)
