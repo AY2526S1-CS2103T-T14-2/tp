@@ -32,7 +32,8 @@ public class HelpWindow extends UiPart<Stage> {
                 + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]...";
 
     public static final String FIND_COMMAND_HELP = "FIND:\n"
-                + "[At least one field to edit must be provided.]\n"
+                + "[At least one field to find must be provided.]\n"
+                + "keyword = {n, c, s, pdt}\n"
                 + "Use: find keyword/KEYWORD [MORE_KEYWORDS]...";
 
     public static final String LIST_COMMAND_HELP_HEADER = "LIST:";
