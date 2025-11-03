@@ -40,6 +40,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
+        if(Integer.parseInt(argMultimap.getPreamble()) <= 0) {
+            throw new ParseException("Index is in valid. Index must be a positive number within the list.");
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
