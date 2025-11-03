@@ -336,62 +336,155 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 - Add a person**
 
 **MSS**
-1.  User requests to add a new person.
-2.  ClientHub requests the person's details from the user.
-3.  User provides the person's details.
-4.  ClientHub adds the person to ClientHub.
+1.  User requests to add a person with all the required details.
+2.  ClientHub adds the person to ClientHub.
 
     Use case ends.
 
 **Extensions**
-* 3a. The given person's details are of invalid format.
+* 1a. The given person's details are of invalid format.
 
-  * 3a1. ClientHub shows an error message on format.
+  * 1a1. ClientHub shows an error message.
 
-    Use case resumes from step 2.
+    Use case ends.
 
-* 3b. The given person's details are valid but have the same name and phone number as another person in ClientHub.
+* 1b. The given person's details are valid but have the same name and phone number as another person in ClientHub.
 
-  * 3b1. ClientHub shows an error message on duplicate person.
+  * 1b1. ClientHub shows an error message.
 
-    Use case resumes from step 2.
+    Use case ends.
 
-**Use case: UC02 - Find a Person**
+**Use case: UC02 - Find persons**
 
 **MSS**
-1.  User requests to find persons by name.
-2.  ClientHub requests the name or part of the name to search for.
-3.  User provides the name or part of the name to search for.
-4.  ClientHub shows a list of persons whose names contain the given name or part of the name.
+1.  User requests to find persons with a specific attribute value.
+2.  ClientHub shows a list of persons matching the search criteria.
 
     Use case ends.
 
 **Extensions**
-* 4a. No persons found.
-  * 4a1. ClientHub shows a message indicating that no persons were found.
+* 1a. No person found.
+
+  * 1a1. ClientHub shows an error message.
+
+    Use case ends.
+
+* 1b. The given attribute values are of invalid format.
+
+  * 1b1. ClientHub shows an error message.
 
     Use case ends.
 
 **Use case: UC03 - Delete a person**
 
 **MSS**
-1.  User requests to list persons
-2.  ClientHub shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  ClientHub deletes the person
+1.  User requests to delete a specific person by their index.
+2.  ClientHub deletes the person.
 
     Use case ends.
 
 **Extensions**
-* 2a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
+    * 1a1. ClientHub shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. ClientHub shows an error message.
+**Use case: UC04 - Delete all persons with a specific status**
 
-      Use case resumes at step 2.
+**MSS**
+1.  User requests to delete all persons with a specific status.
+2.  ClientHub deletes all matching persons.
+
+    Use case ends.
+
+**Extensions**
+* 1a. No persons with the specified status exist.
+
+    * 1a1. ClientHub shows an error message.
+
+      Use case ends.
+
+* 1b. The given status is invalid.
+
+    * 1b1. ClientHub shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Edit a person**
+
+**MSS**
+1.  User requests to edit a person by index with new details.
+2.  ClientHub updates the person's details.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+
+    * 1a1. ClientHub shows an error message.
+
+      Use case ends.
+
+* 1b. The given details are of invalid format.
+
+    * 1b1. ClientHub shows an error message.
+
+      Use case ends.
+
+**Use case: UC06 - List all persons**
+
+**MSS**
+1.  User requests to list all persons.
+2.  ClientHub shows a list of all persons.
+
+    Use case ends.
+
+**Use case: UC07 - Clear all persons**
+
+**MSS**
+1.  User requests to clear all persons.
+2.  ClientHub clears all persons from the list.
+
+    Use case ends.
+
+**Use case: UC08 - Undo previous command**
+
+**MSS**
+1.  User requests to undo the previous command.
+2.  ClientHub reverts the previous action.
+
+    Use case ends.
+
+**Extensions**
+* 1a. There are no previous commands to undo.
+
+    * 1a1. ClientHub shows an error message.
+
+      Use case ends.
+
+**Use case: UC09 - Redo previous undone command**
+
+**MSS**
+1.  User requests to redo the previous undone command.
+2.  ClientHub reapplies the previously undone action.
+
+    Use case ends.
+
+**Extensions**
+* 1a. There are no undone commands to redo.
+
+    * 1a1. ClientHub shows an error message.
+
+      Use case ends.
+
+**Use case: UC10 - View help**
+
+**MSS**
+1.  User requests help.
+2.  ClientHub displays the help window with command instructions.
+
+    Use case ends.
 
 <br>
 
