@@ -14,13 +14,13 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The client index provided is invalid";
     public static final String MESSAGE_MANY_PERSONS_FOUND_OVERVIEW =
-            "%1$d persons found matching your description! Enter 'list' command to view all clients again!";
+            "%1$d clients found matching your description! Enter 'list' command to view all clients again!";
     public static final String MESSAGE_ONE_PERSON_FOUND_OVERVIEW =
-            "1 person found matching your description! Enter 'list' command to view all clients again!";
+            "1 client found matching your description! Enter 'list' command to view all clients again!";
     public static final String MESSAGE_NO_PERSONS_FOUND_OVERVIEW =
-            "No person was found matching your description! Enter 'list' command to view all clients again!";
+            "No client was found matching your description! Enter 'list' command to view all clients again!";
     public static final String MESSAGE_DUPLICATE_FIELDS = "Multiple values specified "
             + "for the following single-valued field(s): ";
     public static final String MESSAGE_EMPTY_FIELDS = "Following fields should not be empty: ";
