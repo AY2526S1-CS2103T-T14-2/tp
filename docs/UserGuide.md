@@ -123,22 +123,38 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 
 <box type="info" seamless>
 
-**Notes about the command format:**<br>
+**Before diving into the features and commands, take note about the different command formats used:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.
+  </div>
+<br>
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [s/STATUS]` can be used as `n/John Doe s/successful` or as `n/John Doe`.
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  e.g <code>n/NAME [s/STATUS]</code> can be used as <code>n/John Doe s/successful</code> or as <code>n/John Doe</code>.
+  </div>
+<br>
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[pdt/PRODUCT]…​` can be excluded (i.e. 0 times), `pdt/Fish`, `pdt/Chicken pdt/Fish` etc.
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  e.g. <code>[pdt/PRODUCT]…​</code> can be excluded (i.e. 0 times), <code>pdt/Fish</code>, <code>pdt/Chicken pdt/Fish</code> etc.
+  </div>
+<br>
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.
+  </div>
+<br>
 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `find`, `list`, `undo`, `redo`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  e.g. if the command specifies <code>help 123</code>, it will be interpreted as <code>help</code>.
+  </div>
+<br>
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
@@ -148,7 +164,7 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 
 ### View help: `help`
 
-If you cannot remember all the commands, you can view all the commands by typing `help`.
+Don't worry if you cannot remember all the commands, you can view all the commands by typing `help`.
 
 ![help message](images/helpMessageV2.png)
 
@@ -159,7 +175,7 @@ If you cannot remember all the commands, you can view all the commands by typing
 
 ### Clear all entries: `clear`
 
-Clears all entries from ClientHub.
+Removes all clients from ClientHub.
 
 **Format**: `clear`
 
@@ -174,7 +190,7 @@ Adds a client to ClientHub.
 
 Details:
 - ***Duplicate*** entries are **not allowed**
-  - Only entries with same `name` **AND** same `phone number` are considered duplicates
+  - Only clients with the same `name` **AND** same `phone_number` are considered duplicates
   - Same name, but different phone number is **not** a duplicate
   - Same phone number, but different name is **not** a duplicate <br> <br>
 - `name` only accepts alphabetic characters and spaces.
@@ -194,15 +210,20 @@ A client can have any number of products (including 0).
 
 
 Examples:
-
-- `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken`
-  - adds a client with name `John Doe`, phone number `98765432`, working at `Chargrill Bar`, with email `johnd@example.com`, address `311, Clementi Ave 2, #02-25`, `uncontacted` status, and having product `chicken`
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+<code>add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken</code>
+  </div>
+This adds a client with name <code>John Doe</code>, phone number <code>98765432</code>, working at <code>Chargrill Bar</code>, with email <code>johnd@example.com</code>, address <code>311, Clementi Ave 2, #02-25</code>, whose status is <code>uncontacted</code>, and having product <code>chicken</code>.
 <br>
 <br>
-- `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken pdt/Fish`
-  - adds a client with name `John Doe`, phone number `98765432`, working at `Chargrill Bar`, with email `johnd@example.com`, address `311, Clementi Ave 2, #02-25`, `uncontacted` status, and having product `chicken` and `fish`
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken <b>pdt/Fish</b></code>
+  </div>
+On top of this, additional products like <code>fish</code> can be included as well.
 
 
+<br>
 <br>
 <br>
 
@@ -235,12 +256,27 @@ Editing the product field of a client completely deletes all existing products t
 replacing it with your requested edits i.e adding of products is **not cumulative**.
 </box>
 
-Examples:
+Examples:<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 1 p/91234567 e/johndoe@example.com</code>
+  </div>
+This edits the phone number and email address of the 1st client in the list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 2 n/Betsy Crower pdt/</code>
+  </div>
+This edits the name of the 2nd client in the list to be <code>Betsy Crower</code> and clears all existing products.
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 3 pdt/Chicken</code>
+  </div>
+This clears all current products tagged to the 3rd client in the list, replacing it with <code>Chicken</code> only.
 
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client in the list to be `91234567` and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower pdt/` Edits the name of the 2nd client in the list to be `Betsy Crower` and clears all existing products.
-- `edit 3 pdt/Chicken` Clears all current products tagged to the 3rd client in the list, replacing it with `Chicken` only.
-
+<br>
 <br>
 <br>
 
@@ -261,10 +297,25 @@ Details:
   - `find n/james s/successful` finds all clients with name `james` **AND** status `successful`.
 
 Examples:
-
-- `find n/John` -> matches `john` and `John Doe` since both contain `John`
-- `find s/successful` -> matches only `successful` (not `unsuccessful`) since statuses require exact match
-- `find c/po` -> matches `Bernice Yu` because `Bernice Yu` is working at `Popular`, which contains `Po`<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find n/John</code>
+  </div>
+This matches <code>john</code> and <code>John Doe</code> since both contain <code>John</code>
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find s/successful</code>
+  </div>
+This matches only <code>successful</code> (not <code>unsuccessful</code>) since statuses require exact match
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find c/po</code>
+  </div>
+This matches <code>Bernice Yu</code> because <code>Bernice Yu</code> is working at <code>Popular</code>, which contains <code>Po</code><br>
+  
   ![result for 'find pop'](images/findPoResult.png)
 
 <box type="tip" seamless>
@@ -272,6 +323,7 @@ Examples:
 `list` can be used after `find` to view the original list of clients again.
 </box>
 
+<br>
 <br>
 <br>
 
@@ -292,12 +344,29 @@ Deletes the specified client or every client with the specified status from Clie
 - The status **must be either uncontacted, inprogress, unsuccessful or successful**
 
 Examples:
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>list</code><br>
+  <code>delete 2</code>
+  </div>
+Keying in <code>list</code> followed by <code>delete 2</code> deletes the 2nd client in the displayed list.
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find n/Betsy</code><br>
+  <code>delete 1</code>
+  </div>
+Keying in <code>find n/Betsy</code> followed by <code>delete 1</code> deletes the 1st client in the displayed list of the `find` command.
+<br>
+<br>
+<br>
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>find n/John</code><br>
+  <code>delete unsuccessful</code>
+  </div>
+Keying in <code>find n/John</code> followed by <code>delete unsuccessful</code> deletes every client with <code>unsuccessful</code> status, regardless of whether the client is in the results of the `find` command.
 
-- `list` followed by `delete 2` deletes the 2nd client in the displayed list.
-- `find n/Betsy` followed by `delete 1` deletes the 1st client in the displayed list of the `find` command.
-- `find n/John` followed by `delete unsuccessful` deletes every client with `unsuccessful` status,
-  regardless of whether the client is in the results of the `find` command.
-
+<br>
 <br>
 <br>
 
@@ -317,16 +386,18 @@ Details:
 - `undo` will not do anything if you have not ***successfully*** executed any commands that modify stored data. <br>
 
 Example:
-```
-edit 1 n/John Doe
-find John
-delete 2
-undo
-undo
-- The first `undo` reverses the `delete` command, and the second `undo` reverses the `edit` command <br>
-- The `find` command is skipped because it does not modify stored data.
-```
-
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 1 n/John Doe</code><br>
+  <code>find John</code><br>
+  <code>delete 2</code><br>
+  <code>undo</code><br>
+  <code>undo</code>
+  </div>
+The first <code>undo</code> reverses the <code>delete</code> command, and the second <code>undo</code> reverses the <code>edit</code> command.
+The <code>find</code> command is skipped because it does not modify stored data.
+<br>
+<br>
+<br>
 <box type="info" seamless>
 
 `undo` can only reverse changes in the current instance of ClientHub (commands executed before exiting and reopening the application cannot be undone).
@@ -344,6 +415,19 @@ Restores the changes that were undone by the most recent `undo` command. <br> <b
 Details:
 - `redo` will only be successful if executed immediately after an `undo` command <br>
 - If not `undo` has been performed, `redo` will not do anything. <br>
+
+Example:
+<div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
+  <code>edit 1 n/John Doe</code><br>
+  <code>find John</code><br>
+  <code>delete 2</code><br>
+  <code>undo</code><br>
+  <code>redo</code>
+  </div>
+The first <code>undo</code> reverses the <code>delete</code> command, and the <code>redo</code> reverses the <code>undo</code> command and executes the <code>delete</code> command again.
+<br>
+<br>
+<br>
 
 <box type="info" seamless>
 
