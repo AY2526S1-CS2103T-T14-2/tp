@@ -67,8 +67,7 @@
 .table-view .column-header .label {
     -fx-font-size: 20pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: black;
-    -fx-background-color: black;
+    -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
 }
@@ -378,8 +377,4 @@
     -fx-padding: 2 4 2 4;
     -fx-border-radius: 10;
     -fx-background-radius: 14;
-}
-
-.list-view {
-    -fx-control-inner-background: #383838;
 }
