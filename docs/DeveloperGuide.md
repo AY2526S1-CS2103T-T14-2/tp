@@ -267,6 +267,30 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Planned Enhancements**
+
+Team Size: 5
+
+1. Currently, our name field does not allow characters like `-` and `/`.
+This might be problematic as those symbols are used in legal names commonly seen in Singapore.
+We plan to refine name field in the future such that it can take in these symbols and accept names like
+`Karthik s/o Ramesh` when creating a new client.
+2. Currently, our GUI is not capable of showing name, email and company fields that are too long,
+as the GUI truncates those fields, ending them off with `...`.
+This is problematic as we will lose those values to the truncation.
+We plan to wrap those fields to one line below when it is too long, hence preserving the values.
+3. Currently, when executing the `edit` command,
+users are allowed to replace the current value of an attribute field with the same value.
+This may be a missed opportunity to detect potential typos or slips from users,
+as they might have accidentally typed the old value instead of new value.
+We plan to give an error message when users try to replace an attribute field with the same value as before.
+4. Currently, after successfully editing an attribute field, the success message shown shows every field of the client.
+That might be problematic as it might cause confusion to users who want to double-check the changes made.
+We plan to update the success message such that it only shows the attribute field that was change,
+and what value it was changed from and to.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Requirements**
 
 ### Product scope
