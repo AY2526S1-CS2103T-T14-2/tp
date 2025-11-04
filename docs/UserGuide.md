@@ -100,8 +100,16 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 > After running he application, you should see this
 > <figure>
 >  <img src="images/clienthubInterface.png" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
->  <figcaption style="text-align: center; font-style: italic;">ClientHub user interface labelled</figcaption>
+>  <figcaption style="text-align: center; font-style: italic;">ClientHub user interface</figcaption>
 > </figure>
+
+<box type="important" seamless>
+
+Our application has light and dark modes, and it is auto-selected when launched,
+based on user's system display settings.
+Hence, your application's user interface might look slightly different from the image of the user interface above!
+
+</box>
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -148,8 +156,8 @@ Before diving into the features, do take note of some [important points](#import
 
 <box type="important" seamless>
 
-- Extra parameters for commands that do not require parameters (`help`, `clear`, `list`, `undo`, `redo` and `exit` ) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+Extra parameters for commands that do not require parameters (`help`, `clear`, `list`, `undo`, `redo` and `exit` ) will be ignored.<br>
+e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </box>
 
@@ -509,7 +517,9 @@ Furthermore, certain edits can cause ClientHub to behave in unexpected ways (e.g
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. **When using multiple screens**, if you move the application to a secondary screen,
+and later switch to using only the primary screen, the application's user interface will open off-screen.
+The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 <br>
 <br>
