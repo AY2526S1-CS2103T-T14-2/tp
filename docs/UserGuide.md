@@ -371,7 +371,7 @@ Deletes a certain client or every client with a specified status from ClientHub.
 
 **Format 1**: `delete INDEX`
 
-- Deletes the client at the specified `INDEX` of the currently displayed client list
+- Deletes the client at the specified [INDEX](#glossary) of the currently displayed client list
 
 **Format 2**: `delete STATUS`
 
