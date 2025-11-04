@@ -263,7 +263,7 @@ Edits an existing client in ClientHub.
 
 <box type="info" seamless>
 
-- Edits the client at the specified `INDEX` of the currently displayed client list
+- Edits the client at the specified [INDEX](#glossary) of the currently displayed client list
 - You can remove all of a specified client’s products by typing `edit INDEX pdt/`.
 - `edit` will not be successful if the requested changes would result in a **duplicate** entry in the data file.
   - For more information on ***duplicate entries***, refer [here](#add-a-client-add)
