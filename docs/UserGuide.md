@@ -68,6 +68,8 @@ This guide will walk you through the **installation of ClientHub**, and **how to
 <br>
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Installation
 
 1. Ensure you have **Java 17** installed.
@@ -111,6 +113,8 @@ based on user's system display settings.
 Hence, your user interface might look slightly different from the image above!
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -519,6 +523,7 @@ Furthermore, certain edits can cause ClientHub to behave in unexpected ways (e.g
 
 <br>
 <br>
+<div style="page-break-after: always;"></div>
 
 ## Legends
 
@@ -528,7 +533,6 @@ Furthermore, certain edits can cause ClientHub to behave in unexpected ways (e.g
 <box type="important" seamless> Important</box>
 
 <br>
-<br>
 
 ## Glossary
 
@@ -537,7 +541,6 @@ Some important words that could be useful!
 ***Substring***: Any consecutive letters within a word. <br>
 ***Index***: The number attached to each person in the current list. You can see it on the left of the client's name!
 
-<br>
 <br>
 
 ## Known issues
