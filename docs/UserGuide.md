@@ -78,7 +78,7 @@ This guide will walk you through the **installation of ClientHub**, and **how to
    What's this box? Check out <a href="#legends">legends</a> to find out!
    </box>
    
-2. Download the latest `ClienHub.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
+2. Download the latest `ClientHub.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
 
 3. Copy the file to the folder you want to use as the home folder.
 
