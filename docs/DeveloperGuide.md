@@ -561,6 +561,8 @@ The overall difficulty is **moderate to high**,primarily due to the introduction
 - Integration with `UndoCommand` and `RedoCommand`
 - Testing undo/redo across all modifying commands
 
+<div style="page-break-after: always;"></div>
+
 **Parser Enhancements (Estimated ~15% of total effort)**
 - Extending parsers to handle new fields (`n/`, `p/`, `c/`, `e/`, `a/`, `s/`, `pdt/`)
 - Validation logic for Singapore phone numbers, email formats, and status values
@@ -641,8 +643,6 @@ testers are expected to do more *exploratory* testing.
    ii. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-<div style="page-break-after: always;"></div>
-
 ### Help
 
 1. Viewing the help window
@@ -682,6 +682,8 @@ testers are expected to do more *exploratory* testing.
    iv. Test case: Missing required field (e.g. omit `n/`)<br>
       Expected: Error message indicating invalid command format. No changes to list.
 
+<div style="page-break-after: always;"></div>
+
 ### Edit
 
 1. Editing fields of an existing person
@@ -699,8 +701,6 @@ testers are expected to do more *exploratory* testing.
 
    v. Test case: Edit resulting in duplicate (same name and phone as another contact)<br>
       Expected: Error message indicating duplicate person. No changes to list.
-
-<div style="page-break-after: always;"></div>
 
 ### Find
 
@@ -745,6 +745,8 @@ testers are expected to do more *exploratory* testing.
    iv. Test case: No prior modifying command, run `undo`<br>
       Expected: Error message indicating nothing to undo. No changes to list or status bar.
 
+<div style="page-break-after: always;"></div>
+
 ### Redo
 
 1. Redoing the most recently undone command
@@ -759,8 +761,6 @@ testers are expected to do more *exploratory* testing.
 
    iv. Test case: No preceding `undo`, run `redo`<br>
       Expected: Error message indicating nothing to redo. No changes to list or status bar.
-
-<div style="page-break-after: always;"></div>
 
 ### Exit
 
