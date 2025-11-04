@@ -241,9 +241,9 @@ Diagrams:
 
 * [Documentation guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Documentation.html)
 * [Testing guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Testing.html)
-* [Logging guide](]https://ay2526s1-cs2103t-t14-2.github.io/tp/Logging.html)
+* [Logging guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Logging.html)
 * [Configuration guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Configuration.html)
-* [DevOps guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/DeveloperGuide.html)
+* [DevOps guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/DevOps.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
