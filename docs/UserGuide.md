@@ -105,9 +105,9 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 
 <box type="important" seamless>
 
-Our application has light and dark modes, and it is auto-selected when launched,
+Our application has light and dark modes, and it is automatically selected when launched or re-launched,
 based on user's system display settings.
-Hence, your application's user interface might look slightly different from the image of the user interface above!
+Hence, your user interface might look slightly different from the image above!
 
 </box>
 
