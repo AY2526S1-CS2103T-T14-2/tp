@@ -238,7 +238,7 @@ Diagrams:
 <div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
-lol
+
 * [Documentation guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Documentation.html)
 * [Testing guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Testing.html)
 * [Logging guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Logging.html)
@@ -531,6 +531,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - *inprogress* - Communication is ongoing with the client, but no outcome has been determined
 - *successful* - A successful deal has been reached between the sales representative and the client
 - *unsuccessful* - An attempt to deal with the client was not successful
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+### Difficulty Level and Overview
+
+This project extends AddressBook-Level3 (AB3) into ClientHub, a contact management application for sales representatives.
+The overall difficulty is **moderate to high**,primarily due to the introduction of multiple entity types, complex business logic for status tracking and batch operations.
+
+### Challenges Faced
+
+1. **Atomic Batch Operations**: Implementing `delete by status` as a single undoable operation required refactoring from iterative deletions to a single `setAddressBook()` call. Ensuring undo/redo correctly handles batch changes was more complex than single-entity operations.
+
+2. **Undo/Redo Implementation**: The snapshot-based undo/redo system required careful management of stack states. Ensuring that redo stacks are cleared on new modifications, and that batch operations are treated atomically, added significant complexity to the `ModelManager`.
+
+3. **Status-Based Filtering and Deletion**: Implementing status-based operations while maintaining consistency with index-based operations required careful validation and error handling to prevent edge cases.
+
+
+### Effort Breakdown
+
+**Core Features (Estimated ~40% of total effort)**
+- Extending AB3's `Person` model to include `Company`, `Status`, and `Product` relationships
+- Implementing `AddCommand`, `EditCommand`, `DeleteCommand` with support for multiple entity types
+- Status-based filtering and deletion logic
+
+**Undo/Redo Feature (Estimated ~10% of total effort)**
+- Design and implementation of stack-based undo/redo in `ModelManager`
+- Integration with `UndoCommand` and `RedoCommand`
+- Testing undo/redo across all modifying commands
+
+**Parser Enhancements (Estimated ~15% of total effort)**
+- Extending parsers to handle new fields (`n/`, `p/`, `c/`, `e/`, `a/`, `s/`, `pdt/`)
+- Validation logic for Singapore phone numbers, email formats, and status values
+
+**UI and UX (Estimated ~15% of total effort)**
+- Adapting UI components to display new fields (company, status, products)
+- Help window updates with new command formats
+
+**Testing and Documentation (Estimated ~20% of total effort)**
+- Unit tests for new commands and model logic
+- User guide and developer guide updates
+- Manual testing instructions
+
+### Reuse and Adaptation
+
+**Significant Reuse (~15% of effort saved)**
+- **AB3 Base Architecture**: The entire component architecture (UI, Logic, Model, Storage) was reused, saving substantial effort in foundational design. Adaptation work was primarily in extending existing classes rather than creating new systems.
+- **JavaFX Framework**: The UI framework and event handling mechanisms were reused, with adaptations focused on displaying new fields and updating layouts.
+- **JSON Storage**: The storage mechanism from AB3 was reused with minimal changes, primarily extending `JsonSerializableAddressBook` to handle new fields.
+
+**Adaptation Work**
+- Extended `Person` class to include `Company`, `Status`, and `Product` relationships
+- Modified `ModelManager` to support undo/redo stacks
+- Extended command parsers to handle new prefixes and validation rules
+- Updated UI components (`PersonCard`, `PersonListPanel`) to display additional fields
+
+### Achievements
+1. **Robust Undo/Redo System**: Implemented a fully functional undo/redo mechanism that correctly handles all modifying commands, including atomic batch operations.
+
+2. **Multi-Entity Support**: Successfully extended the application from a single-entity system to a multi-entity system with relationships, while maintaining clean architecture principles.
+
+3. **Comprehensive Validation**: Implemented validation for Singapore-specific formats (phone numbers) and business-specific constraints (status values, product relationships).
+
+3. **Complete Documentation**: Delivered comprehensive user and developer guides with detailed manual testing instructions.
+
+### Comparison to AB3
+**Complexity Increases**
+- **Entity Types**: AB3 deals with one entity type (`Person`); ClientHub manages `Person` and `Product` with relationships
+- **Business Logic**: Status tracking and status-based operations add complexity not present in AB3
+- **Undo/Redo**: AB3 does not include undo/redo; this feature required significant design and implementation effort
+- **Batch Operations**: Delete-by-status requires atomic handling that AB3's single-entity delete does not need
+
+**Similarities**
+- Core architecture and component structure remain similar
+- Command pattern and parser design follow the same principles
+- Storage mechanism is largely unchanged
+
+**Overall Assessment**: While ClientHub builds on AB3's solid foundation, the addition of multiple entity types, undo/redo functionality, and batch operations increased the overall complexity by approximately **60%** compared to AB3's base implementation.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
