@@ -23,6 +23,8 @@ Refer to the guide [_Setting up and getting started_](https://ay2526s1-cs2103t-t
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 ### Architecture
@@ -48,6 +50,8 @@ The bulk of the app's work is done by the following four components:
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -67,6 +71,8 @@ The sections below give more details of each component.
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -85,6 +91,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 <br>
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -93,6 +100,8 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
+
+<div style="page-break-after: always;"></div>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
@@ -111,6 +120,8 @@ How the `Logic` component works:
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <puml src="diagrams/ParserClasses.puml" width="600"/>
@@ -122,6 +133,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 <br>
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -147,6 +159,7 @@ require one `Product` object per unique product, instead of each `Person` needin
 </box>
 
 <br>
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -166,6 +179,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -220,6 +235,8 @@ Diagrams:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Documentation.html)
@@ -238,6 +255,8 @@ Team Size: 5
 This might be problematic as those symbols are used in legal names commonly seen in Singapore.
 We plan to refine name field in the future such that it can take in these symbols and accept names like
 `Karthik s/o Ramesh` when creating a new client.
+It was not the first thing we fixed as it is not expected of ClientHub to strictly store legal names,
+it instead stores preferred names.
 2. Currently, our GUI is not capable of showing name, email and company fields that are too long,
 as the GUI truncates those fields, ending them off with `...`.
 This is problematic as we will lose those values to the truncation.
@@ -283,6 +302,7 @@ thereby improving their operational efficiency. This is especially so for users 
 CLIs compared to GUIs which can be complex and overwhelming
 
 <br>
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -323,6 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | sales representative                                                         | be able to put links to documents or sheets into contact details                              | keep track of more information about each client                                                 |
 
 <br>
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -369,6 +390,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. ClientHub shows an error message.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC03 - Delete a client**
 
@@ -539,6 +562,8 @@ testers are expected to do more *exploratory* testing.
    ii. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
+
 ### Help
 
 1. Viewing the help window
@@ -595,6 +620,8 @@ testers are expected to do more *exploratory* testing.
 
    v. Test case: Edit resulting in duplicate (same name and phone as another contact)<br>
       Expected: Error message indicating duplicate person. No changes to list.
+
+<div style="page-break-after: always;"></div>
 
 ### Find
 
@@ -654,6 +681,8 @@ testers are expected to do more *exploratory* testing.
    iv. Test case: No preceding `undo`, run `redo`<br>
       Expected: Error message indicating nothing to redo. No changes to list or status bar.
 
+<div style="page-break-after: always;"></div>
+
 ### Exit
 
 1. Exiting the application
@@ -678,7 +707,6 @@ testers are expected to do more *exploratory* testing.
    iv. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-
 2. Deleting all persons with a specific status (atomic delete-by-status)
 
    i. Prerequisites: List all persons using `list`. Ensure at least one person with status `unsuccessful` (or another valid status) is present.
@@ -691,6 +719,8 @@ testers are expected to do more *exploratory* testing.
 
    iv. Test case: `delete successful` when there are no `successful` clients<br>
       Expected: No person is deleted. Error message shown indicating no matching persons. Status bar remains the same.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
@@ -718,4 +748,3 @@ testers are expected to do more *exploratory* testing.
    - Test case (macOS/Linux): Make the data file or its folder read-only (e.g. `chmod a-w [JAR location]/data` or `chmod a-w addressbook.json`). Start the application and execute a modifying command (e.g. `add`, `delete`, `edit`, `clear`).
      
      Expected: Command executes in memory but saving fails. An error message is shown: "Could not save data to file ... due to insufficient permissions ..." (or a generic file I/O error). After restoring write permissions and executing another modifying command, saving succeeds.
-
