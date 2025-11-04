@@ -238,7 +238,6 @@ Diagrams:
 <div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
-lol
 * [Documentation guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Documentation.html)
 * [Testing guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Testing.html)
 * [Logging guide](https://ay2526s1-cs2103t-t14-2.github.io/tp/Logging.html)
