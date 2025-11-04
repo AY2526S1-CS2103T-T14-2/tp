@@ -100,7 +100,7 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 > After running the application, you should see this
 > <figure>
 >  <img src="images/clienthubInterface.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
->  <figcaption style="text-align: center; font-style: italic;">ClientHub user interface labelled</figcaption>
+>  <figcaption style="text-align: center; font-style: italic;">ClientHub user interface</figcaption>
 > </figure>
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -213,13 +213,20 @@ Examples:
 <code>add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken</code>
   </div>
 This adds a client with name <code>John Doe</code>, phone number <code>98765432</code>, working at <code>Chargrill Bar</code>, with email <code>johnd@example.com</code>, address <code>311, Clementi Ave 2, #02-25</code>, whose status is <code>uncontacted</code>, and having product <code>chicken</code>.
+
+<br>
+
+> <figure style="margin-top: 1em">
+>  <img src="images/addCommandSample.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <figcaption style="text-align: center; font-style: italic;">ClientHub after adding John Doe</figcaption>
+> </figure>
+
 <br>
 <br>
-<br>
+On top of this, additional products like <code>fish</code> can be included as well.
 <div style="background-color:#f6f6f6; padding:8px; border-radius:6px;">
   <code>add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken <b>pdt/Fish</b></code>
   </div>
-On top of this, additional products like <code>fish</code> can be included as well.
 
 
 <br>
@@ -261,6 +268,12 @@ Examples:<br>
   <code>edit 1 p/91234567 e/johndoe@example.com</code>
   </div>
 This edits the phone number and email address of the 1st client in the list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.
+
+> <figure style="margin-top: 1em">
+>  <img src="images/addCommandSample.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <figcaption style="text-align: center; font-style: italic;">ClientHub after editing the same John Doe added in the previous example</figcaption>
+> </figure>
+
 <br>
 <br>
 <br>
