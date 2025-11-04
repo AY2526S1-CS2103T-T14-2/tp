@@ -61,14 +61,14 @@ If you have **_already installed ClientHub_**
 <br>
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ## Quick Start
 
 This guide will walk you through the **installation of ClientHub**, and **how to use it**.
 
 <br>
 <br>
-
-<div style="page-break-after: always;"></div>
 
 ### Installation
 
@@ -98,11 +98,11 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
   `user@XXX ClientHub` on Mac
   </box>
 
-5. Use `java -jar Clienthub.jar` command to run the application.
+5. Use `java -jar ClientHub.jar` command to run the application.
 
 > After running the application, you should see this
 > <figure>
->  <img src="images/clienthubInterface.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <img src="images/clienthubInterface.png" width="90%" height="90%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
 >  <figcaption style="text-align: center; font-style: italic;">ClientHub user interface</figcaption>
 > </figure>
 
@@ -181,7 +181,7 @@ Don't worry if you cannot remember all the commands, you can view all the comman
 **Format**: `help`
 
 > <figure>
->  <img src="images/helpMessageV2.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <img src="images/helpMessageV2.png" width="90%" height="90%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
 >  <figcaption style="text-align: center; font-style: italic;">Help message displayed after entering 'help'</figcaption>
 > </figure>
 
@@ -230,7 +230,7 @@ This adds a client with name <code>John Doe</code>, phone number <code>98765432<
 <br>
 
 > <figure style="margin-top: 1em">
->  <img src="images/addCommandSample.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <img src="images/addCommandSample.png" width="100%" height="100%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
 >  <figcaption style="text-align: center; font-style: italic;">ClientHub after adding John Doe</figcaption>
 > </figure>
 
@@ -283,7 +283,7 @@ Examples:<br>
 This edits the phone number and email address of the 1st client in the list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.
 
 > <figure style="margin-top: 1em">
->  <img src="images/addCommandSample.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <img src="images/addCommandSample.png" width="100%" height="100%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
 >  <figcaption style="text-align: center; font-style: italic;">ClientHub after editing the same John Doe added in the previous example</figcaption>
 > </figure>
 
@@ -352,7 +352,7 @@ This matches only <code>successful</code> (not <code>unsuccessful</code>) since 
 This matches <code>Bernice Yu</code> because <code>Bernice Yu</code> is working at <code>Popular</code>, which contains <code>Po</code><br>
   
 > <figure>
->  <img src="images/findPoResult.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <img src="images/findPoResult.png" width="100%" height="100%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
 >  <figcaption style="text-align: center; font-style: italic;">Output after entering 'find c/po'</figcaption>
 > </figure>
 
