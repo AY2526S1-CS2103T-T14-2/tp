@@ -37,6 +37,7 @@ designed specifically for sales representatives based in Singapore who handle B2
   - [Edit the data file](#edit-the-data-file)
 - [FAQ](#faq)
 - [Legends](#legends)
+- [Glossary](#glossary)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
 
@@ -66,6 +67,8 @@ This guide will walk you through the **installation of ClientHub**, and **how to
 
 <br>
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Installation
 
@@ -110,6 +113,8 @@ based on user's system display settings.
 Hence, your user interface might look slightly different from the image above!
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -258,7 +263,7 @@ Edits an existing client in ClientHub.
 
 <box type="info" seamless>
 
-- Edits the client at the specified `INDEX` of the currently displayed client list
+- Edits the client at the specified [INDEX](#glossary) of the currently displayed client list
 - You can remove all of a specified client’s products by typing `edit INDEX pdt/`.
 - `edit` will not be successful if the requested changes would result in a **duplicate** entry in the data file.
   - For more information on ***duplicate entries***, refer [here](#add-a-client-add)
@@ -309,9 +314,10 @@ Finds clients who have any of the matching details.
 
 <box type="info" seamless>
 
-- OR-matching
+OR-matching (within the same parameter)
   - `find n/james john` finds all clients with name `james` **OR** `john`
-- AND-matching
+
+AND-matching (across different parameters)
   - `find n/james s/successful` finds all clients with name `james` **AND** status `successful`.
 
 </box>
@@ -320,7 +326,7 @@ Finds clients who have any of the matching details.
 
 - ***At least*** one of the optional fields must be provided.
 - Case-insensitive. e.g `hans` will match `Hans`
-- **Substring** matching applies to `n/`, `c/`, and `pdt/`
+- [**Substring**](#glossary) matching applies to `n/`, `c/`, and `pdt/`
 - **Exact** matching only applies to `s/`. Substrings will **not** match for `s/`
 
 </box>
@@ -517,6 +523,7 @@ Furthermore, certain edits can cause ClientHub to behave in unexpected ways (e.g
 
 <br>
 <br>
+<div style="page-break-after: always;"></div>
 
 ## Legends
 
@@ -526,6 +533,14 @@ Furthermore, certain edits can cause ClientHub to behave in unexpected ways (e.g
 <box type="important" seamless> Important</box>
 
 <br>
+
+## Glossary
+
+Some important words that could be useful!
+
+***Substring***: Any consecutive letters within a word. <br>
+***Index***: The number attached to each person in the current list. You can see it on the left of the client's name!
+
 <br>
 
 ## Known issues
