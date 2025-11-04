@@ -97,9 +97,9 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 
 5. Use `java -jar Clienthub.jar` command to run the application.
 
-> After running he application, you should see this
+> After running the application, you should see this
 > <figure>
->  <img src="images/clienthubInterface.png" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <img src="images/clienthubInterface.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
 >  <figcaption style="text-align: center; font-style: italic;">ClientHub user interface labelled</figcaption>
 > </figure>
 
@@ -168,7 +168,7 @@ Don't worry if you cannot remember all the commands, you can view all the comman
 **Format**: `help`
 
 > <figure>
->  <img src="images/helpMessageV2.png" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <img src="images/helpMessageV2.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
 >  <figcaption style="text-align: center; font-style: italic;">Help message displayed after entering 'help'</figcaption>
 > </figure>
 
@@ -325,7 +325,7 @@ This matches only <code>successful</code> (not <code>unsuccessful</code>) since 
 This matches <code>Bernice Yu</code> because <code>Bernice Yu</code> is working at <code>Popular</code>, which contains <code>Po</code><br>
   
 > <figure>
->  <img src="images/findPoResult.png" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
+>  <img src="images/findPoResult.png" width="70%" height="70%" style="display: block; margin: 0 auto;" alt="Ui" style="display: block; margin: 0 auto;" alt="ClientHub Interface">
 >  <figcaption style="text-align: center; font-style: italic;">Output after entering 'find c/po'</figcaption>
 > </figure>
 
