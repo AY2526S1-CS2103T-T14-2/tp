@@ -20,7 +20,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String THIRTEENSPACER = "             ";
     public static final String FIVESPACER = "     ";
     public static final String ADD_COMMAND_HELP = "ADD:\nUse: add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS "
-                + "s/STATUS [pdt/PRODUCT]...";
+                + "[s/STATUS] [pdt/PRODUCT]...";
 
     public static final String DELETE_COMMAND_HELP = "DELETE:\n"
                 + "Use: delete INDEX (must be a positive integer) OR "
@@ -32,7 +32,8 @@ public class HelpWindow extends UiPart<Stage> {
                 + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]...";
 
     public static final String FIND_COMMAND_HELP = "FIND:\n"
-                + "[At least one field to edit must be provided.]\n"
+                + "[At least one field to find must be provided.]\n"
+                + "keyword = {n, c, s, pdt}\n"
                 + "Use: find keyword/KEYWORD [MORE_KEYWORDS]...";
 
     public static final String LIST_COMMAND_HELP_HEADER = "LIST:";
@@ -50,17 +51,20 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String REDO_COMMAND_HELP_HEADER = "REDO:";
     public static final String REDO_COMMAND_HELP_USAGE = "Use: redo";
 
+    public static final String EXIT_COMMAND_HELP_HEADER = "EXIT:";
+    public static final String EXIT_COMMAND_HELP_USAGE = "Use: exit";
+
     public static final String SINGLE_LINE_HEADERS = LIST_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
             + HELP_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
             + CLEAR_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
             + UNDO_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
-            + REDO_COMMAND_HELP_HEADER;
+            + REDO_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER + EXIT_COMMAND_HELP_HEADER;
 
     public static final String SINGLE_LINE_USE = LIST_COMMAND_HELP_USAGE + THIRTEENSPACER
             + HELP_COMMAND_HELP_USAGE + "           "
             + CLEAR_COMMAND_HELP_USAGE + THIRTEENSPACER + " "
             + UNDO_COMMAND_HELP_USAGE + "            "
-            + REDO_COMMAND_HELP_USAGE;
+            + REDO_COMMAND_HELP_USAGE + "            " + EXIT_COMMAND_HELP_USAGE;
 
     public static final String HELP_MESSAGE = "Here are all the useful commands:\n\n"
                 + ADD_COMMAND_HELP + "\n\n"

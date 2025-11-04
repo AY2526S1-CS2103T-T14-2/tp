@@ -116,6 +116,10 @@
     -fx-border-width: 1;
 }
 
+.list-cell:empty {
+    -fx-background-color: #E3E3E3 !important;
+}
+
 .list-cell .label {
     -fx-text-fill: #111111;
 }
